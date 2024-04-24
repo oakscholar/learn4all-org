@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', '3.141.235.235','learn4all.org']
 
 
-# Application definition
+# Application definitionpython manage.py runserver
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'learn4all',
+    'crispy_forms',
+    'crispy_bootstrap5',
 
 ]
 
@@ -133,3 +135,7 @@ AUTH_USER_MODEL = 'learn4all.CustomUser'#
 # Handling Static and Media Files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Bootstrap
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

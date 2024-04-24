@@ -19,11 +19,24 @@ from django.urls import path, include
 from django.contrib.auth.views import LogoutView
 from learn4all.views import *
 from learn4all import views
+from django.contrib.auth.views import LogoutView 
 
 urlpatterns = [
+    # Admin
     path('admin/', admin.site.urls),
-    # path('', home.as_view(), name='home'),
+
+
+    # Navigation Bar
     path('', views.home, name='home'),
-    path('schedule-interview', views.schedule_interview, name='schedule'),
+    path('about/', views.home, name='about'),
+    path('plan/', views.home, name='plan'),
+    path('contact/', views.home, name='contact'),
+    path("login/", MyLoginView.as_view(template_name='profile/login.html'), name="login"),
+    path("signup/", SignUpView.as_view(template_name='profile/signup.html'), name="signup"),
+    path('logout/', LogoutView.as_view(), name='logout'),
     # path('profile/', views.update_profile, name='profile'),
+
+
+    # Features
+    path('schedule-interview/', views.schedule_interview, name='schedule'),
 ]
