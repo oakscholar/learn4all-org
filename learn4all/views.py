@@ -18,12 +18,12 @@ from .models import Profile
 
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
-    template_name = "registration/register.html"
+    template_name = "profile/signup.html"
     success_url = reverse_lazy("login")
 
 
 class MyLoginView(LoginView):
-    template_name = "registration/login.html"
+    template_name = "profile/login.html"
     redirect_authenticated_user = True
     def get_success_url(self):
         if self.request.user.is_staff or self.request.user.is_superuser:
@@ -33,7 +33,7 @@ class MyLoginView(LoginView):
 
 def home(request):
     # TO-DO: revise home page's view at here
-    return render(request, 'home.html')
+    return render(request, 'home/home.html')
 
 def schedule_interview(request):
     # TO-DO: DB logic inside
