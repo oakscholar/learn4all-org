@@ -1,0 +1,18 @@
+[0;1;31m●[0m nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Thu 2024-04-18 19:30:06 UTC; 5s ago
+       Docs: man:nginx(8)
+    Process: 26902 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+    Process: 26903 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; [0;1;31m(code=exited, status=1/FAILURE)[0m
+        CPU: 45ms
+
+Apr 18 19:30:04 ip-172-26-6-96 systemd[1]: Starting A high performance web server and a reverse proxy server...
+Apr 18 19:30:04 ip-172-26-6-96 nginx[26903]: nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+Apr 18 19:30:04 ip-172-26-6-96 nginx[26903]: nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+Apr 18 19:30:05 ip-172-26-6-96 nginx[26903]: nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+Apr 18 19:30:05 ip-172-26-6-96 nginx[26903]: nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+Apr 18 19:30:06 ip-172-26-6-96 nginx[26903]: nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+Apr 18 19:30:06 ip-172-26-6-96 nginx[26903]: nginx: [emerg] still could not bind()
+Apr 18 19:30:06 ip-172-26-6-96 systemd[1]: [0;1;39m[0;1;31m[0;1;39mnginx.service: Control process exited, code=exited, status=1/FAILURE[0m
+Apr 18 19:30:06 ip-172-26-6-96 systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mnginx.service: Failed with result 'exit-code'.[0m
+Apr 18 19:30:06 ip-172-26-6-96 systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start A high performance web server and a reverse proxy server.[0m
