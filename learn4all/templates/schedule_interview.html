@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interview Form</title>
+<style>
+    /* Add CSS styles here */
+    .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div id="form-container">
+    <!-- Step 1: Schedule Interview -->
+    <div id="step-1">
+        <h2>When is your interview scheduled?</h2>
+        <input type="date" name="interview_date">
+        <button onclick="showNext(2)">Next</button>
+    </div>
+
+    <!-- Step 2: Type of Interview -->
+    <div id="step-2" class="hidden">
+        <h2>Which type of Interview is?</h2>
+        <input type="radio" id="case" name="interview_type" value="case">
+        <label for="case">Case Interview</label><br>
+        <input type="radio" id="behavioral" name="interview_type" value="behavioral">
+        <label for="behavioral">Behavioral Interview</label><br>
+        <input type="radio" id="technical" name="interview_type" value="technical">
+        <label for="technical">Technical Interview</label><br>
+        <button onclick="showNext(3)">Next</button>
+    </div>
+
+    <!-- Step 3: Confidence Level -->
+    <div id="step-3" class="hidden">
+        <h2>How confident are you for your interview right now?</h2>
+        <input type="range" id="confidence" name="confidence" min="1" max="5">
+        <label for="confidence">Confidence Level</label>
+        <button onclick="showNext(4)">Next</button>
+    </div>
+
+    <!-- Step 4: Availability Schedule -->
+    <div id="step-4" class="hidden">
+        <h2>Please mark your availability for your practice.</h2>
+        
+        <div id="availability-container">
+            <div id="days-of-week">
+                <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+            </div>
+            <div id="time-slots">
+                <button type="button" onclick="toggleAvailability('sun-9')"></button>
+            </div>
+            <button id="add-availability">Add</button>
+        </div>
+
+        <div id="selected-slots"></div>
+
+        <button onclick="showNext(5)">Next</button>
+    </div>
+
+    <!-- Step 5: Own Resources -->
+    <div id="step-5" class="hidden">
+        <h2>Do you have your own resources to help you prepare?</h2>
+        <div class="resource-option">
+            <label>
+                <input type="radio" name="resource" value="pdfs">
+                PDFs
+            </label>
+        </div>
+    
+        <div class="resource-option">
+            <label>
+                <input type="radio" name="resource" value="sheets">
+                Sheets
+            </label>
+        </div>
+    
+        <div class="resource-option">
+            <label>
+                <input type="radio" name="resource" value="weblink">
+                Weblink
+            </label>
+        </div>
+    
+        <button type="submit">Submit</button>
+    </div>
+</div>
+
+<script>
+    function showNext(stepNumber) {
+        // Hide all steps
+        for (let i = 1; i <= 5; i++) {
+            document.getElementById('step-' + i).classList.add('hidden');
+        }
+        // Show the next step
+        document.getElementById('step-' + stepNumber).classList.remove('hidden');
+    }
+
+
+    // Define arrays for days and times
+    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const timeSlots = []; 
+    for (let hour = 0; hour <= 23; hour++) {
+        // let timeSlot = `${hour % 12 || 12} AM - ${(hour % 12 || 12) + 1} ${hour + 1 < 12 ? 'AM' : 'PM'}`;
+        timeSlots.push(`${hour}:00 - ${hour + 1}:00`);     
+    }
+    timeSlots.push('12:00 - 1:00');
+
+
+    // Function to dynamically generate time slot buttons
+    function generateTimeSlots() {
+        const timeSlotsContainer = document.getElementById('time-slots');
+        timeSlotsContainer.innerHTML = ''; // Clear any existing buttons
+
+        // Create a table to hold the time slots
+        const slotsTable = document.createElement('table');
+        slotsTable.id = 'slotsTable';
+
+        // // Create table headers for days of the week
+        // const headerRow = slotsTable.insertRow();
+        // daysOfWeek.forEach(day => {
+        //     const th = document.createElement('th');
+        //     th.textContent = day;
+        //     headerRow.appendChild(th);
+        // });
+
+        // Generate time slots using a for loop from 9 AM to 12 PM
+        timeSlots.forEach((time, index) => {
+            const timeRow = slotsTable.insertRow();
+
+            daysOfWeek.forEach(day => {
+                const timeCell = timeRow.insertCell();
+                const buttonId = `${day.toLowerCase()}-${index}`;
+                const timeSlotButton = document.createElement('button');
+                timeSlotButton.type = 'button';
+                timeSlotButton.classList.add('time-slot-button');
+                timeSlotButton.id = buttonId;
+                timeSlotButton.textContent = time;
+                timeSlotButton.onclick = function() { toggleAvailability(day, time, buttonId); };
+                timeCell.appendChild(timeSlotButton);
+            });
+        });
+
+        // Append the table to the timeSlotsContainer
+        timeSlotsContainer.appendChild(slotsTable);
+    }
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        generateTimeSlots();
+    });
+
+    // Function to handle the availability toggle and display selected slots
+    function toggleAvailability(day, time, buttonId) {
+        const slotButton = document.getElementById(buttonId);
+        slotButton.classList.toggle('selected');
+        // Display the selected time slots below the table
+        const selectedSlotsContainer = document.getElementById('selected-slots');
+        selectedSlotsContainer.innerHTML = ''; // Clear previous entries
+
+        const selectedButtons = document.querySelectorAll('.time-slot-button.selected');
+        selectedButtons.forEach(btn => {
+            const slotInfo = document.createElement('div');
+            slotInfo.textContent = `${btn.textContent} on ${day}`;
+            selectedSlotsContainer.appendChild(slotInfo);
+        });
+    }
+
+
+    function addAvailability() {
+        const selectedSlotsContainer = document.getElementById('selected-slots');
+        selectedSlotsContainer.innerHTML = ''; // Clear previous entries
+
+        const selectedButtons = document.querySelectorAll('.time-slot-button.selected');
+        selectedButtons.forEach(btn => {
+            const slotInfo = document.createElement('div');
+            slotInfo.textContent = `${btn.textContent} on ${btn.getAttribute('data-day')}`;
+            selectedSlotsContainer.appendChild(slotInfo);
+        });
+    }
+    // document.getElementById('add-availability').addEventListener('click', addAvailability);
+
+
+</script>
+
+</body>
+
+<style>
+#days-of-week span, #time-slots th {
+    display: inline-block;
+    width: calc(100% / 7); /* Divide by the number of days */
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+
+#slotsTable {
+    width: 100%;
+    table-layout: fixed; /* This makes each column equal width */
+}
+
+#slotsTable th, #slotsTable td {
+    padding: 5px;
+    border: 1px solid #ddd;
+}
+
+.time-slot-button {
+    width: 100%; /* Span the full width of the cell */
+    height: 100%; /* Span the full height of the cell */
+    box-sizing: border-box; /* Include padding and border in the width and height */
+    border: none; /* Remove border */
+    background-color: #f9f9f9; /* Light background */
+    padding: 10px; /* Padding inside the button */
+    margin: 0; /* Remove margin */
+}
+
+.time-slot-button.selected {
+    background-color: #007bff; /* Blue background for selected */
+    color: white; /* White text for selected */
+    border: none; /* No border */
+}
+
+</style>
+</html>
