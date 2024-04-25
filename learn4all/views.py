@@ -27,12 +27,11 @@ class MyLoginView(LoginView):
     redirect_authenticated_user = True
     def get_success_url(self):
         if self.request.user.is_staff or self.request.user.is_superuser:
-            return reverse_lazy("user_management")
+            return reverse_lazy("admin") # Changed if needed
         else:
             return reverse_lazy("home")
 
 def home(request):
-    # TO-DO: revise home page's view at here
     return render(request, 'home/home.html')
 
 def schedule_interview(request):

@@ -5,6 +5,7 @@ from django import forms
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
 
 
 # Create your models here.
@@ -33,7 +34,7 @@ class CustomUser(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=timezone.now)
     interview_type = models.CharField(max_length=100)  # E.g., "Technical", "Behavioral"
 
     def __str__(self):
@@ -45,7 +46,7 @@ class Profile(models.Model):
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_update_user_profile(sender, instance, created, **kwargs):
+def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
     else:
