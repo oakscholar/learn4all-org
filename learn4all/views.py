@@ -27,7 +27,7 @@ class MyLoginView(LoginView):
     redirect_authenticated_user = True
     def get_success_url(self):
         if self.request.user.is_staff or self.request.user.is_superuser:
-            return reverse_lazy("admin") # Changed if needed
+            return reverse_lazy("admin:index") # Changed if needed
         else:
             return reverse_lazy("home")
 
