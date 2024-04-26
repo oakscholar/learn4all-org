@@ -61,7 +61,8 @@
         <h1 class="main-3-title">Join <span class="highlight-main-3">World's Largest</span> AI-Learning platform today</h1>
         <h3 class="main-3-subtitle">Start learning by registering for free</h3>
         <p class="main-3-description">At Learn-4-All, we're committed to revolutionizing the way you learn. Our AI-powered platform connects learners like you with top-tier online course materials, crafting personalized study plans that cater to your unique needs and goals.</p>
-        <button type="button" class="btn btn-warning"><span class="signup-color">Sign up for Free</span></button>
+        <button type="button" class="btn btn-warning" id="signupButton"><span class="signup-color">Sign up for Free</span></button>
+        </button>
         </div>
         </div>
     </div> 
@@ -168,11 +169,12 @@
             <div class="webFooter">
                 <h3>Explore</h3>
                 <div class="btn-group-vertical">
-                    <a type="button" >Home</a>
-                    <a type="button" >About</a>
-                    <a type="button" >Plan</a>
-                    <a type="button" >Contact</a>
+                    <a href="/" type="button">Home</a>
+                    <a href="/about" type="button">About</a>
+                    <a href="/plan" type="button">Plan</a>
+                    <a href="/contact" type="button">Contact</a>
                 </div>
+
             </div>
             <div class="webFooter">
                 <h3>Category</h3>
@@ -198,7 +200,12 @@
     </footer>
     
 
-    
+    <script>
+        document.getElementById("signupButton").addEventListener("click", function() {
+            // Redirect to the register page
+            window.location.href = "/signup"; 
+        });
+    </script>
 
 
 {% endblock %}
