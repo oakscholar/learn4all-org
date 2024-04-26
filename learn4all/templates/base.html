@@ -7,12 +7,715 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Learn4All</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../static/styles.css">
+    <!-- <link rel="stylesheet" href="../static/styles.css"> -->
+    <!-- Code for font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Code for font awesome cdn -->
+
+    <!-- Code for linking css file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Code for linking css file -->
+
+    <!-- Code for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,500;1,75..100,500&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap" rel="stylesheet">
+    <!-- Code for Google Fonts -->
+  
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+      // <!-- Best Instructor -->
+      // <!-- Feedback -->
+      jQuery(document).ready(function($) {
+      $(".testimonial_slider_area").owlCarousel({
+          autoplay:true,
+          slideSpeed:3000,
+          items:3,
+          loop:true,
+          nav:true,
+          navText:['<i class="fa fa-arrow-left"></i>', '<i class="fa fa-arrow-right"></i>'],
+          margin:30,
+          dots:false,
+          responsive:{
+          320:{
+              items:1
+          },
+          767:{
+              items:2
+          },
+          600:{
+              items:3
+          },
+          1000:{
+              items:3
+          }
+          }
+      });
+      });
+  
+      // <!-- Feedback -->
+  
+      </script>
+
+
+    <style>
+        /* <!-- Header CSS --> */
+        
+        
+        .header {
+          background: #0e5ccd;
+          margin: 0;
+          height: 50px;
+        }
+        
+        .containerHeader {
+          margin: 0;
+          width: 100%;
+          color: white;
+          letter-spacing: 1px;
+          background-color: #0e5ccd;
+          height: 300px;
+          text-align: center;
+          padding: 15px 300px;
+          display: grid;
+          grid-template-columns: 2fr 2fr 1fr;
+          font-family: 'Public Sans Light', sans-serif;
+          font-size: 15px;
+          font-weight: 100;
+          justify-content: left;
+        }
+        
+        .form-control {
+          border-radius: 30px;
+          background-color: #0e5ccd;
+          border-color: #ffffff;
+        }
+        
+        .has-search .form-control ::placeholder {
+          color: #ffffff;
+        }
+        
+        .has-search .form-control {
+          padding-left: 2.375rem;
+        }
+        
+        .has-search .form-control-feedback {
+          position: absolute;
+          z-index: 2;
+          display: block;
+          width: 2.375rem;
+          height: 2.375rem;
+          line-height: 2.375rem;
+          text-align: center;
+          pointer-events: none;
+          color: #ffffff;
+        }
+        
+        .btn-group a {
+          text-decoration: none;
+          padding: 10px;
+          margin: 20px;
+          color: #ffffff;
+        }
+        
+        .btn-group-1 a {
+          text-decoration: none;
+          padding: 10px;
+          margin: 20px;
+          color: #ffffff;
+        }
+        
+        .btn-group a:hover {
+          color: #efc94e;
+        }
+        
+        .header-sign-up {
+          background-color: #efc94e;
+          color: #0e5ccd;
+          border-radius: 10px;
+          padding: 10px;
+        }
+        
+        .btn-group-1 .btn {
+          color: #0e5ccd;
+        }
+        
+        
+        /* ----------------------------- MEDIA QUERY --------------------------- */
+        
+        @media(max-width: 1300px)
+        {
+            .navbar
+            {
+                font-size: 13px;
+            }
+        }
+        @media(max-width: 1212px)
+        {
+            .navbar
+            {
+                font-size: 13px;
+            }
+        }
+        
+        @media(max-width: 1090px)
+        {
+            .container
+            {
+                display: grid;
+                grid-template-columns: 1fr 2fr 1fr;
+            }
+        }
+        @media(max-width: 750px)
+        {
+            .navbar
+            {
+                font-size: 12px;
+            }
+        }
+        
+        @media(max-width: 650px)
+        {
+            .navbar
+            {
+                font-size: 10px;
+            }
+        }
+        @media(max-width: 550px)
+        {
+            .container 
+            {
+                padding: 20px 25px;
+            }
+        }
+        
+          /* <!-- Header CSS --> */
+        
+        
+        /* <!--  Main Body CSS --> */
+        .mainContainer {
+          margin: 0;
+          width: 100%;
+          flex-direction: column;
+          text-align: center;
+          font-family: 'Open Sans', sans-serif;
+          font-size: 15px;
+          justify-content: start;
+        }
+        
+        .three-person-pointing-laptop {
+          margin: 20px 20px;
+        }
+        
+        .main-1 {
+          background-color: #0e5ccd;
+          height: 500px;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .main-1-left {
+          margin: 70px;
+        }
+        
+        .welcome {
+          color: #ffffff;
+        }
+        
+        .title-welcome {
+          color: #ffffff;
+        }
+        
+        .highlight-class {
+          color: #FFC300;
+        }
+        
+        .description-welcome {
+          color: #ffffff;
+        }
+        
+        .btn-warning {
+          padding: 10px 20px;
+          border-radius: 20px;
+        }
+        
+        .trial-color {
+          color: #ffffff;
+        }
+        
+        .content-main-2 {
+          background-color: #e7effa;
+          height: 700px;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          background-image: url("../static/earth-background.png");
+        }
+        
+        .women-learning {
+          width: 400px;
+          length: 600px;
+        }
+        
+        .main-2-left {
+          margin: 70px;
+        }
+        
+        .main-2-left-title, .women-learning {
+          top: 50%;
+          left: 50%;
+        }
+        
+        .main-2-right {
+          margin: 120px;
+        }
+        
+        .main-2-des-title {
+          font-family: "Open Sans Semibold", sans-serif;
+          font-weight: 400;
+          font-style: normal;
+          font-size: 20px;
+        }
+        
+        .main-2-para {
+          font-family: "Public Sans", sans-serif;
+          font-weight: 200;
+          font-size: 15px;
+          font-style: light;
+        }
+        
+        .main-3 {
+          background-color: #ffffff;
+          height: 700px;
+        }
+        
+        .main-3-section-1 {
+          text-align: center;
+          height: 150px;
+          margin: 40px;
+        }
+        
+        .logo-group img {
+          width: 100px;
+          height: 40px;
+        }
+        
+        .main-3-section-2 {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .main-3-section-2-right {
+          margin: 70px;
+        }
+        
+        .highlight-main-3 {
+          color: #0e5ccd;
+        }
+        
+        .logo-main-3 {
+          width: 150px;
+          height: 60px;
+          font-family: "Public Sans", sans-serif;
+          font-style: normal;
+          font-weight: 500;
+        }
+        
+        .signup-color {
+          color: #ffffff;
+        }
+        
+        .main-3-section-subtitle {
+          font-family: "Open Sans Light", sans-serif;
+          font-weight: 100;
+        }
+        
+        .main-4 {
+          background-color: #f3f4f5;
+          height: 500px;
+        }
+        
+        .main-4-title {
+          margin-left: 70px;
+        }
+        
+        .instructor-color {
+          color: #0e5ccd;
+        }
+        
+        .img-area {
+          justify-content: left;
+        }
+        
+        .card-img-top {
+          width: 100%;
+          height: 30vh;
+          object-fit: contain;
+          }
+        
+        .carousel-inner {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .card_wrapper {
+          width: 100%;
+          display: flex;
+          align-items: center;
+        }
+        
+        .card {
+          margin: 0 .5em;
+        }
+        
+        .head_para {
+          margin-top: 15px;
+        }
+        
+        .card_box {
+          background: #ffffff;
+          border-radius: 20px;
+        }
+        
+        .card_text {
+          padding: 30px 20px 25px 20px;
+        }
+        
+        .card_text h4 {
+          font-size: 18px;
+          font-family: Arial, sans-serif;;
+          color: black;
+        }
+        
+        .card_text p {
+          font-size: 14px;
+          line-height: 150%;
+          margin-top: 10px;
+        }
+        
+        .main-5 {
+          background-color: #e7effa;
+          height: 500px;
+        }
+        
+        .main-5-title {
+          margin-left: 70px;
+        }
+        
+        .main-6-1 {
+          background-color: #0d5acf;
+        }
+        
+        .main-6-2 {
+          background-color: #c7c7c7;
+        }
+        
+        .main-6-3 {
+          background-color: #ffffff;
+        }
+        
+        .main-6 {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          height: 500px;
+        }
+        
+        #main-6-1-1, #main-6-3-1 {
+          color: #ffc727;
+        
+        }
+        
+        #main-6-2-1 {
+          color: #ffffff;
+          
+        }
+        
+        #main-6-1-1, #main-6-2-1, #main-6-3-1 {
+          margin: 40px;
+          font-size: 40px;
+        }
+        
+        .main-6-1-2, .main-6-2-2 {
+          color: #ffffff;
+        }
+        
+        .main-6-3-2 {
+          color: #0d5acf;
+        }
+        
+        .main-6-1-2, .main-6-2-2, .main-6-3-2 {
+          margin: 40px;
+        }
+        
+        
+        /* <!--  Main Body CSS -->
+        
+        <!-- Best Instructor CSS -->
+        
+        
+        
+        <!-- Best Instructor CSS -->
+        
+        
+        <!-- Student Feedback CSS --> */
+        body{
+          background: #0a69ed;
+        }
+        .testimonial_area{
+          padding: 10% 0;
+        }
+        .box-area {
+          padding: 30px;
+          position: relative;
+          width: 100%;
+          display: block;
+          background: #fff;
+          color: #000;
+          box-shadow: rgba(0,0,0,0.35) 0 5px 15px;
+          margin: 20px 0;
+        }
+        .box-area h5{
+          font-size: 16px;
+          font-weight: 700;
+          color: #0a69ed;
+          margin-top: 30px;
+          margin-bottom: 5px;
+          text-transform: uppercase;
+          Letter-spacing: 1px;
+        }
+        .box-area span{
+          color: #262626;
+          display: block;
+          font-size: 13px;
+          margin: 0 0 10px;
+          font-weight: 400;
+        }
+        .box-area .content{
+          color: #262626;
+        }
+        .box-area .img-area{
+          width: 90px;
+          height: 90px;
+          position: absolute;
+          top: -40px;
+          left: 0;
+          bottom: 0;
+          margin: 0 auto;
+          right: 0;
+          z-index: 1;
+          border: 5px solid #fff;
+          border-radius: 50%;
+          box-shadow: 0 5px 4px rgba(0,0,0,0.5);
+        }
+        .box-area .img-area img{
+          width: 100%;
+          height: auto;
+          border-radius: 50%;
+        }
+        .socials{
+          margin-top: 30px;
+        }
+        .socials i{
+          margin: 0 10px;
+          color: #0a69ed;
+          font-size: 18px;
+        }
+        .testimonial_area .owl-nav{
+          position: absolute;
+          top: 50%;
+          width: 100%;
+        }
+        .testimonial_area .owl-prev,
+        .testimonial_area .owl-next{
+          width:40px;
+          height:40px;
+          line-height: 40px;
+          color: #0a69ed;
+          border-radius: 50%;
+          text-align:center;
+          background: #fff;
+          position: absolute;
+        }
+        .testimonial_area .owl-prev{
+          left: -60px;
+          top: -30px;
+        }
+        .testimonial_area .owl-prev{
+          right: -60px;
+          top: -30px;
+        }
+        
+        @media only screen and (max-width: 991px){
+          .owl-nav{
+            display: none;
+          }
+        }
+        
+        @media only screen and (max-width: 767px){
+          .owl-nav{
+            display: none;
+          }
+          .box-area{
+            text-align: center;
+          }
+        }
+        
+        
+        /* <!-- Student Feedback CSS --> */
+        
+        
+        /* <!-- Footer CSS --> */
+        .footer {
+          background: black;
+          margin: 0;
+        }
+        
+        .containerFooter {
+            width: 100%;
+            background-color: black;
+            color: white;
+            height: 300px;
+            letter-spacing: 1px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            justify-content: left;
+            padding: 15px 300px;
+            box-sizing: border-box;
+            font-family: "Public Sans", sans-serif;
+        }
+        
+        .containerFooter h3 {
+          font-size: 15px;
+          font-weight: 600;
+        }
+        
+        .webFooter p {
+          font-size: 10px;
+          font-weight: 100;
+        }
+        
+        .btn-group-vertical a {
+          padding-bottom: 5px;
+          display: block;
+          cursor: pointer;
+          text-decoration: none;
+          color: white;
+          width: 100px;
+          padding: 15px 40px;
+          justify-content: left;
+          align-items: start;
+          font-size: 10px;
+          font-weight: 100;
+        }
+        
+        .form-group input {
+          margin: 10px;
+          justify-content: left;
+        }
+        
+        .footer-email {
+          padding: 10px;
+          border-radius: 10px;
+        }
+        
+        .subscribe-button {
+          padding: 10px;
+          border-radius: 20px;
+          background-color:  #ffc727;
+          color: #ffffff;
+        }
+        
+        .containerFooter h3:hover, .containerFooter p:hover
+        {
+            color: lightslategray;
+            cursor: pointer;
+        }
+        .webFooter {
+            padding-top: 30px;
+            font-size: 12px;
+            align-items: start;
+        }
+        
+
+        /* ----------------------------- MEDIA QUERY --------------------------- */
+
+        @media(max-width: 1350px)
+        {
+            .containerFooter
+            {
+                padding: 15px 200px;
+            }
+        }
+        @media(max-width: 1166px)
+        {
+            .containerFooter
+            {
+                padding: 15px 100px;
+            }
+        }
+        @media(max-width: 950px)
+        {
+            .containerFooter
+            {
+                padding: 15px 50px;
+            }
+        }
+        @media(max-width: 850px)
+        {
+            .containerFooter
+            {
+                font-size: 13px;
+            }
+            .webFooter
+            {
+                font-size: 10px;
+            }
+        }
+        @media(max-width: 750px)
+        {
+            .containerFooter
+            {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                padding: 15px 100px;
+            }
+            .webFooter
+            {
+                padding: 15px 20px;
+            }
+        }
+        @media(max-width: 540px)
+        {
+            .containerFooter
+            {
+                padding: 0 25px;
+            }
+        }
+
+        /* <!-- Footer CSS --> */
+
+    </style>
+        
+
 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
           <a class="navbar-brand" href="#">Learn4All</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,8 +744,41 @@
             </ul>
           </div>
         </div>
-      </nav>
-
+      </nav> -->
+    <header>
+      <section>
+        <div class="containerHeader">
+          <div class="intro">
+            <link rel="icon" type="image/x-icon" href="learn4all.jpg" />
+            <div class="form-group has-search">
+              <span class="fa fa-search form-control-feedback"></span>
+              <input type="text" class="form-control" placeholder="What do you want to learn">
+            </div>
+            </form>
+          </div>
+          <div class="select">
+            <div class="btn-group">
+              <a href="{% url 'home' %}">Home</a>
+              <a href="{% url 'about' %}">About</a>
+              <a href="{% url 'plan' %}">Plan</a>
+              <a href="{% url 'contact' %}">Contact</a>
+            </div>
+          </div>
+          <div class="signup-header">
+            <div class="btn-group-1">
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Signup</a>
+                {% if user.is_authenticated %}
+                  <form herf="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <a href="{% url 'logout' %}">Logout</a>
+                {% endif %}
+                </form>
+            </div>
+          </div>
+        </div>
+    </section>
+  </header>
     {% block content %}
     {% endblock %}
 

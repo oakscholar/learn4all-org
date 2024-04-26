@@ -29,7 +29,7 @@ class MyLoginView(LoginView):
         if self.request.user.is_staff or self.request.user.is_superuser:
             return reverse_lazy("admin:index") # Changed if needed
         else:
-            return reverse_lazy("home")
+            return reverse_lazy("home") # TO-DO: sChange to profile
 
 def home(request):
     return render(request, 'home/home.html')
