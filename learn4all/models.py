@@ -36,6 +36,9 @@ class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now)
     interview_type = models.CharField(max_length=100)  # E.g., "Technical", "Behavioral"
+    goal = models.TextField(blank=True, null=True) 
+    skill = models.CharField(blank=True, null=True, max_length=255)
+    learning_style = models.CharField(blank=True, null=True, max_length=100)
 
     def __str__(self):
         return f"Interview on {self.date.strftime('%Y-%m-%d')} for {self.user.username}"
@@ -51,3 +54,4 @@ def create_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
     else:
         instance.profile.save()
+

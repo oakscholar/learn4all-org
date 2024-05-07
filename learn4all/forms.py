@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
-from .models import CustomUser
+from .models import *
 
 
 
@@ -33,7 +33,36 @@ class CustomUserCreationForm(UserCreationForm):
             user.save()
         return user
     
+
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
         fields = UserChangeForm.Meta.fields
+
+
+class GoalForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['goal']
+
+    def __init__(self, *args, **kwargs):
+        super(GoalForm, self).__init__(*args, **kwargs)
+        self.fields['goal'].required = True
+
+class LearningStyleForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['learning_style']
+
+    def __init__(self, *args, **kwargs):
+        super(LearningStyleForm, self).__init__(*args, **kwargs)
+        self.fields['goal'].required = True
+
+class SkillForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['skill']
+
+    def __init__(self, *args, **kwargs):
+        super(SkillForm, self).__init__(*args, **kwargs)
+        self.fields['goal'].required = True

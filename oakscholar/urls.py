@@ -39,4 +39,9 @@ urlpatterns = [
 
     # Features
     path('schedule-interview/', views.schedule_interview, name='schedule'),
+
+    # Learning Plan 
+    path('describe_goal/', views.DescribeGoalView.as_view(), name='describeGoal'),
+    path('evaluate_learning_style/', views.EvaluateLearningStyleView.as_view(), name='evaluateLearningStyle'),
+    path('result_learning_style/<int:user_id>/', views.GenerateStudyPlanView, name='resultLearningStyle'),
 ]
