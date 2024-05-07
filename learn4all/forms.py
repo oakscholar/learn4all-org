@@ -56,7 +56,7 @@ class LearningStyleForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(LearningStyleForm, self).__init__(*args, **kwargs)
-        self.fields['goal'].required = True
+        self.fields['learning_style'].required = True
 
 class SkillForm(forms.ModelForm):
     class Meta:
@@ -65,4 +65,4 @@ class SkillForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(SkillForm, self).__init__(*args, **kwargs)
-        self.fields['goal'].required = True
+        self.fields['skill'].required = True
