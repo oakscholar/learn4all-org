@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Side Menu</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
+          <div
+            class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"
+          >
+            <a
+              href="/"
+              class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+            >
+              <span class="fs-5 d-none d-sm-inline">Menu</span>
+            </a>
+            <ul
+              class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+              id="menu"
+            >
+              <li class="nav-item">
+                <a href="#" class="nav-link align-middle px-0">
+                  <i class="fs-4 bi-house"></i>
+                  <span class="ms-1 d-none d-sm-inline">Home</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#submenu1"
+                  data-bs-toggle="collapse"
+                  class="nav-link px-0 align-middle"
+                >
+                  <i class="fs-4 bi-speedometer2"></i>
+                  <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                </a>
+                <ul
+                  class="collapse show nav flex-column ms-1"
+                  id="submenu1"
+                  data-bs-parent="#menu"
+                >
+                  <li class="w-100">
+                    <a href="#" class="nav-link px-0">
+                      <span class="d-none d-sm-inline">Item</span> 1
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link px-0">
+                      <span class="d-none d-sm-inline">Item</span> 2
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a
+                  href="#submenu2"
+                  data-bs-toggle="collapse"
+                  class="nav-link px-0 align-middle"
+                >
+                  <i class="fs-4 bi-bootstrap"></i>
+                  <span class="ms-1 d-none d-sm-inline">Bootstrap</span></a
+                >
+                <ul
+                  class="collapse nav flex-column ms-1"
+                  id="submenu2"
+                  data-bs-parent="#menu"
+                >
+                  <li class="w-100">
+                    <a href="#" class="nav-link px-0">
+                      <span class="d-none d-sm-inline">Item</span> 1</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link px-0">
+                      <span class="d-none d-sm-inline">Item</span> 2</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a
+                  href="#submenu3"
+                  data-bs-toggle="collapse"
+                  class="nav-link px-0 align-middle"
+                >
+                  <i class="fs-4 bi-grid"></i>
+                  <span class="ms-1 d-none d-sm-inline">Products</span>
+                </a>
+                <ul
+                  class="collapse nav flex-column ms-1"
+                  id="submenu3"
+                  data-bs-parent="#menu"
+                >
+                  <li class="w-100">
+                    <a href="#" class="nav-link px-0">
+                      <span class="d-none d-sm-inline">Product</span> 1</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link px-0">
+                      <span class="d-none d-sm-inline">Product</span> 2</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link px-0">
+                      <span class="d-none d-sm-inline">Product</span> 3</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link px-0">
+                      <span class="d-none d-sm-inline">Product</span> 4</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#" class="nav-link px-0 align-middle">
+                  <i class="fs-4 bi-people"></i>
+                  <span class="ms-1 d-none d-sm-inline">Customers</span>
+                </a>
+              </li>
+            </ul>
+            <hr />
+            <div class="dropdown pb-4">
+              <a
+                href="#"
+                class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                id="dropdownUser1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src="https://github.com/mdo.png"
+                  alt="hugenerd"
+                  width="30"
+                  height="30"
+                  class="rounded-circle"
+                />
+                <span class="d-none d-sm-inline mx-1">loser</span>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-dark text-small shadow"
+                aria-labelledby="dropdownUser1"
+              >
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col py-3">
+          <h2>Hi, User</h2>
+          <p class="lead">
+            Let's start
+          </p>
+          <div class="choose-your-learning-style">
+            <div class="describe-goal-title">
+                <h3>Choose your learning style</h3>
+                <p>There are many learning styles that show people's preferences for learning and processing new information. While these are not hard scientific categories and should be used more as guidelines than rules, there are 8 learning styles that are well recognized and act as useful tools in tailoring lessons to learners. And some are surprisingly specific.</p>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button">Button</button>
+                </div>
+              </div>
+            <div class="describe-goal-button-group">
+                <button type="button" class="btn btn-outline-dark border-white">
+                    <h3>Visual</h3>
+                    <p>Spatial Learners</p>
+                </button>
+                <button type="button" class="btn btn-outline-dark border-white">
+                    <h3>Logical</h3>
+                    <p>Analytical Learners</p>
+                </button>
+                <br />
+                <button type="button" class="btn btn-outline-dark border-white">
+                    <h3>Aural</h3>
+                    <p>Audio Learners</p>
+                </button>
+                <button type="button" class="btn btn-outline-dark border-white">
+                    <h3>Social</h3>
+                    <p>Linguistic Learners</p>
+                </button>
+                <br />
+                <button type="button" class="btn btn-outline-dark border-white">
+                  <h3>Physical</h3>
+                  <p>Tactile Learners</p>
+                </button>
+                <button type="button" class="btn btn-outline-dark border-white">
+                    <h3>Solo Learners</h3>
+                </button>
+                <br />
+                <button type="button" class="btn btn-outline-dark border-white">
+                  <h3>Verbal</h3>
+                  <p>Linguistic Learners</p>
+                </button>
+                <button type="button" class="btn btn-outline-dark border-white">
+                  <h3>Natural/Nature Learners</h3>
+                </button>
+            </div>
+              
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

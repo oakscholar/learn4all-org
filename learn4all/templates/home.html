@@ -30,24 +30,39 @@
 <!-- Code for Google Fonts -->
 
 <style>
+
+body {
+  width: 100vw;
+}
+
 <!-- Header CSS -->
 
 
 .header {
+  width: 100vw;
+  height: 20vh;
   background: #0e5ccd;
   margin: 0;
-  height: 50px;
+}
+
+.header-logo {
+  margin: 10px auto;
+  width: 10vw;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: 10vw auto;
 }
 
 .containerHeader {
   margin: 0;
-  width: 100%;
+  width: 100vw;
   color: white;
   letter-spacing: 1px;
   background-color: #0e5ccd;
-  height: 300px;
   text-align: center;
-  padding: 15px 300px;
+  padding: 40px 50px;
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
   font-family: 'Public Sans Light', sans-serif;
@@ -67,7 +82,6 @@
 }
 
 .has-search .form-control {
-  padding-left: 2.375rem;
 }
 
 .has-search .form-control-feedback {
@@ -84,15 +98,12 @@
 
 .btn-group a {
   text-decoration: none;
-  padding: 10px;
   margin: 20px;
   color: #ffffff;
 }
 
 .btn-group-1 a {
   text-decoration: none;
-  padding: 10px;
-  margin: 20px;
   color: #ffffff;
 }
 
@@ -101,10 +112,10 @@
 }
 
 .header-sign-up {
+  margin: 10px;
   background-color: #efc94e;
   color: #0e5ccd;
   border-radius: 10px;
-  padding: 10px;
 }
 
 .btn-group-1 .btn {
@@ -112,61 +123,13 @@
 }
 
 
-/* ----------------------------- MEDIA QUERY --------------------------- */
-
-@media(max-width: 1300px)
-{
-    .navbar
-    {
-        font-size: 13px;
-    }
-}
-@media(max-width: 1212px)
-{
-    .navbar
-    {
-        font-size: 13px;
-    }
-}
-
-@media(max-width: 1090px)
-{
-    .container
-    {
-        display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
-    }
-}
-@media(max-width: 750px)
-{
-    .navbar
-    {
-        font-size: 12px;
-    }
-}
-
-@media(max-width: 650px)
-{
-    .navbar
-    {
-        font-size: 10px;
-    }
-}
-@media(max-width: 550px)
-{
-    .container 
-    {
-        padding: 20px 25px;
-    }
-}
-
   <!-- Header CSS -->
 
 
 <!--  Main Body CSS -->
 .mainContainer {
   margin: 0;
-  width: 100%;
+  width: 100vw;
   flex-direction: column;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
@@ -175,18 +138,22 @@
 }
 
 .three-person-pointing-laptop {
-  margin: 20px 20px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
 }
 
 .main-1 {
   background-color: #0e5ccd;
-  height: 500px;
+  height: 50%;
+  padding: 50px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
 
 .main-1-left {
-  margin: 70px;
+  margin: 50px;
 }
 
 .welcome {
@@ -214,21 +181,26 @@
   color: #ffffff;
 }
 
+.main-2 {
+  height: auto;
+  overflow: hidden;
+}
+
 .content-main-2 {
   background-color: #e7effa;
-  height: 700px;
+  height: auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 2fr;
   background-image: url("../static/earth-background.png");
 }
 
 .women-learning {
-  width: 400px;
-  length: 600px;
+  width: 40vw;
+  length: 50vh;
 }
 
 .main-2-left {
-  margin: 70px;
+  margin: 5vw;
 }
 
 .main-2-left-title, .women-learning {
@@ -237,7 +209,8 @@
 }
 
 .main-2-right {
-  margin: 120px;
+  padding: 50px;
+  justify-content: center;
 }
 
 .main-2-des-title {
@@ -256,7 +229,11 @@
 
 .main-3 {
   background-color: #ffffff;
-  height: 700px;
+  height: auto;
+}
+
+.main-3-section-1 .main-3-title, logo-group {
+  width: 90vw;
 }
 
 .main-3-section-1 {
@@ -266,14 +243,26 @@
 }
 
 .logo-group img {
-  width: 100px;
+  width: auto;
   height: 40px;
 }
 
 .main-3-section-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  overflow: scroll;
 }
+
+.main-3-section-2-right .main-3-title {
+  font-size: 2rem;
+}
+
+.main-3-section-2-right .main-3-subtitle {
+  font-size: 1.5rem;
+  font-family: "Open Sans Light", sans-serif;
+  font-weight: 100;
+}
+
 
 .main-3-section-2-right {
   margin: 70px;
@@ -293,11 +282,6 @@
 
 .signup-color {
   color: #ffffff;
-}
-
-.main-3-section-subtitle {
-  font-family: "Open Sans Light", sans-serif;
-  font-weight: 100;
 }
 
 .main-4 {
@@ -387,12 +371,11 @@
 .main-6 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  height: 500px;
+  height: auto;
 }
 
 #main-6-1-1, #main-6-3-1 {
   color: #ffc727;
-
 }
 
 #main-6-2-1 {
@@ -428,9 +411,7 @@
 
 
 <!-- Student Feedback CSS -->
-body{
-  background: #0a69ed;
-}
+
 .testimonial_area{
   padding: 10% 0;
 }
@@ -536,15 +517,17 @@ body{
 
 <!-- Footer CSS -->
 .footer {
+  width: 100vw;
   background: black;
   margin: 0;
+  height: auto;
 }
 
 .containerFooter {
     width: 100%;
+    height: auto;
     background-color: black;
     color: white;
-    height: 300px;
     letter-spacing: 1px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -581,6 +564,7 @@ body{
 .form-group input {
   margin: 10px;
   justify-content: left;
+  
 }
 
 .footer-email {
@@ -676,7 +660,7 @@ body{
   <section>
     <div class="containerHeader">
       <div class="intro">
-        <link rel="icon" type="image/x-icon" href="learn4all.jpg" />
+        <img rel="icon" type="image/x-icon" class="header-logo" src="../static/header-logo.png" />
         <div class="form-group has-search">
           <span class="fa fa-search form-control-feedback"></span>
           <input type="text" class="form-control" placeholder="What do you want to learn">
