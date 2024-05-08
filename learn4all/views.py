@@ -121,8 +121,8 @@ def get_user_profile(request, user_id):
     return profile
 
 
-def create_prompt(profile):
-    prompt = (f"Generate a detailed 5-week study plan in JSON format, tailored for an individual with specific attributes. "
+def create_prompt(profile): #Provide valid JSON output. 
+    prompt = (f"Provide valid JSON output. Generate a detailed 5-week study plan in JSON format, tailored for an individual with specific attributes. "
             f"Profile details: Goal - {profile.goal}, Skills - {profile.skill}, Learning Style - {profile.learning_style}. "
             f"Each week should clearly define its learning objectives. "
             f"Provide a comprehensive daily learning plan from Monday to Sunday, listing the activities and specific resources needed each day. "
@@ -161,68 +161,6 @@ def get_study_plan(prompt):
     return response.choices[0].text
 
 
-
-def parse_study_plan(context):
-    try:
-        # Attempt to load the JSON data
-        cleaned_string = context["study_plan"].strip().replace('\n', '').replace('\t', '')
-        data = json.loads(cleaned_string)
-    except json.JSONDecodeError as e:
-        error_position = e.pos
-        context_snippet = cleaned_string[max(0, error_position-50):error_position+50]
-        print(f"Error decoding JSON near: ...{context_snippet}... {str(e)}")
-        return None
-
-    organized_plan = {}
-    
-    # for week, details in data.items():
-    #     print(week,details)
-    #     if isinstance(details, dict):
-    #         organized_week = parse_week_from_dict(details)
-    #     elif isinstance(details, list):
-    #         organized_week = parse_week_from_list(details)
-    #     else:
-    #         print(f"Unexpected data type for week details: {type(details),details}")
-    #         continue
-        
-    #     organized_plan[week] = organized_week
-
-    return data
-
-def parse_week_from_dict(details):
-    week_data = {
-        'Learning Objectives': details.get('learningObjectives', []),
-        'Daily Activities': {}
-    }
-    
-    for day in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']:
-        if day in details:
-            day_info = details[day]
-            if isinstance(day_info, dict):
-                week_data['Daily Activities'][day] = {
-                    'Activity': day_info.get('activity', 'No activity listed'),
-                    'Resources': day_info.get('resources', [])
-                }
-            else:
-                print(f"Expected dictionary for {day}, got {type(day_info)} instead.")
-    return week_data
-
-def parse_week_from_list(details):
-    # Example processing, adjust based on actual list structure
-    week_data = {
-        'Learning Objectives': [],
-        'Daily Activities': {}
-    }
-    for item in details:
-        if isinstance(item, dict) and 'day' in item and 'activity' in item:
-            day = item['day']
-            week_data['Daily Activities'][day] = {
-                'Activity': item.get('activity', 'No activity listed'),
-                'Resources': item.get('resources', [])
-            }
-    return week_data
-
-
 class GenerateStudyPlanView(LoginRequiredMixin, View):
     login_url = '/login/'
 
@@ -238,7 +176,12 @@ class GenerateStudyPlanView(LoginRequiredMixin, View):
             profile = get_object_or_404(Profile, user_id=user_id)
             prompt = create_prompt(profile)
             study_plan = get_study_plan(prompt)
-            context = {"study_plan":study_plan}
-            context = parse_study_plan(context)
-            print('tessssst',context)
+            # context = {"study_plan":study_plan}
+            context = json.loads(study_plan)#parse_study_plan(context)
+            print('test-context',context)
+            context.update({
+                'user_id': user_id,  # Pass user_id to use in the JavaScript fetch call
+                'first_name': request.user.first_name  
+            })
+            
             return render(request, 'learning-plan/result_learning_style.html',context)
