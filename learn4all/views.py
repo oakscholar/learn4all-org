@@ -12,15 +12,17 @@ from django.shortcuts import render
 from .models import Profile
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
-import openai, os
+import openai, os, sys, json, re
+from django.views import View
+from django.conf import settings
+# import boto3
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
 # Create your views here.
-# User = get_user_model()
-# user = User.objects.get(username='user02')
-# print(user.get_all_permissions())
-
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
     template_name = "profile/signup.html"
@@ -62,7 +64,7 @@ def update_profile(request):
 
 
 
-class DescribeGoalView(FormView):
+class DescribeGoalView(LoginRequiredMixin,FormView):
     template_name = 'learning-plan/describe_goal.html'
     form_class = GoalForm
     success_url = reverse_lazy('evaluateLearningStyle')  
@@ -74,8 +76,19 @@ class DescribeGoalView(FormView):
         profile.save()
         return super(DescribeGoalView, self).form_valid(form)
     
+    def post(self, request, *args, **kwargs):
+        data = json.loads(request.body)
+        goal = data.get('goal')
+        if request.user.is_authenticated:
+            Profile.objects.update_or_create(
+                user=request.user,
+                defaults={'goal': goal}
+            )
+            return JsonResponse({'status': 'success', 'message': 'Goal updated'})
+        return JsonResponse({'status': 'error', 'message': 'User not authenticated'}, status=401)
 
-class EvaluateLearningStyleView(FormView):
+
+class EvaluateLearningStyleView(LoginRequiredMixin,FormView):
     template_name = 'learning-plan/evaluate_learning_style.html'
     form_class = LearningStyleForm
     success_url = reverse_lazy('resultLearningStyle')  
@@ -86,6 +99,21 @@ class EvaluateLearningStyleView(FormView):
         profile.user = self.request.user
         profile.save()
         return super(DescribeGoalView, self).form_valid(form)
+    
+
+    def post(self, request, *args, **kwargs):
+        data = json.loads(request.body)
+        learning_style = data.get('learning_style')
+        user = request.user
+
+        if user.is_authenticated:
+            profile, created = Profile.objects.update_or_create(
+                user=user,
+                defaults={'learning_style': learning_style}
+            )
+            return JsonResponse({'status': 'success', 'message': 'Profile updated', 'user_id': user.id})
+        else:
+            return JsonResponse({'status': 'error', 'message': 'User not authenticated'}, status=401)
 
     
 def get_user_profile(request, user_id):
@@ -94,33 +122,123 @@ def get_user_profile(request, user_id):
 
 
 def create_prompt(profile):
-    prompt = (f"Create a personalized 10-week study plan for a user with the following details: "
-              f"Goal: {profile.goal}, Skills: {profile.skill}, Learning Style: {profile.learning_style}."
-              f"I need weekly learning objectives and a detailed daily learning plan, such as what specific resources I need to learn each day")
+    prompt = (f"Generate a detailed 5-week study plan in JSON format, tailored for an individual with specific attributes. "
+            f"Profile details: Goal - {profile.goal}, Skills - {profile.skill}, Learning Style - {profile.learning_style}. "
+            f"Each week should clearly define its learning objectives. "
+            f"Provide a comprehensive daily learning plan from Monday to Sunday, listing the activities and specific resources needed each day. "
+            f"The output should be structured as JSON to ensure easy integration and practical application in line with the user's goal, skills, and preferred learning style.")
     return prompt
 
 
+
+# client = boto3.client('secretsmanager')
+# def get_secret():
+#     try:
+#         get_secret_value_response = client.get_secret_value(
+#             SecretId='your_secret_id_or_name_here'
+#         )
+#     except Exception as e:
+#         print("Error retrieving secret: ", e)
+#         return None
+#     else:
+#         secret = get_secret_value_response['SecretString']
+#         return json.loads(secret)['OPENAI_API_KEY']
+
 def get_study_plan(prompt):
-    openai.api_key = os.getenv('OPENAI_API_KEY')
+    openai_api_key = settings.OPENAI_API_KEY 
+    # openai.api_key = get_secret()
+
+    if not openai_api_key:
+        return None, "Error: The OPENAI_API_KEY environment variable is not set."
 
     # GPT guidance: https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models
     # POSTMAN guidance: https://www.postman.com/devrel/workspace/openai/documentation/13183464-90abb798-cb85-43cb-ba3a-ae7941e968da 
     response = openai.Completion.create(
-        model="gpt-3.5-turbo-instruct",  # Change the model as per availability or requirements; gpt-3.5-turbo, gpt-4, gpt-3.5-turbo-16k-1106
+        model="gpt-3.5-turbo-instruct",  # Change the model as per availability or requirements; gpt-3.5-turbo-instruct;gpt-3.5-turbo, gpt-4, gpt-3.5-turbo-16k-1106
         prompt=prompt,
-        # max_tokens=1500,  
+        max_tokens=3500,  
     )
     return response.choices[0].text
 
 
-@method_decorator(login_required, name='dispatch')
-def GenerateStudyPlanView(request, user_id): # result_learning_style.html
-    if not request.user.is_authenticated: 
-        return HttpResponse("You are not authorized to view this page.", status=401)
+
+def parse_study_plan(context):
+    try:
+        # Attempt to load the JSON data
+        cleaned_string = context["study_plan"].strip().replace('\n', '').replace('\t', '')
+        data = json.loads(cleaned_string)
+    except json.JSONDecodeError as e:
+        error_position = e.pos
+        context_snippet = cleaned_string[max(0, error_position-50):error_position+50]
+        print(f"Error decoding JSON near: ...{context_snippet}... {str(e)}")
+        return None
+
+    organized_plan = {}
     
-    def get(self, request):
-        user_id = request.user.id 
-        profile = get_user_profile(request, user_id)
-        prompt = create_prompt(profile)
-        study_plan = get_study_plan(prompt)
-        return HttpResponse(study_plan)
+    # for week, details in data.items():
+    #     print(week,details)
+    #     if isinstance(details, dict):
+    #         organized_week = parse_week_from_dict(details)
+    #     elif isinstance(details, list):
+    #         organized_week = parse_week_from_list(details)
+    #     else:
+    #         print(f"Unexpected data type for week details: {type(details),details}")
+    #         continue
+        
+    #     organized_plan[week] = organized_week
+
+    return data
+
+def parse_week_from_dict(details):
+    week_data = {
+        'Learning Objectives': details.get('learningObjectives', []),
+        'Daily Activities': {}
+    }
+    
+    for day in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']:
+        if day in details:
+            day_info = details[day]
+            if isinstance(day_info, dict):
+                week_data['Daily Activities'][day] = {
+                    'Activity': day_info.get('activity', 'No activity listed'),
+                    'Resources': day_info.get('resources', [])
+                }
+            else:
+                print(f"Expected dictionary for {day}, got {type(day_info)} instead.")
+    return week_data
+
+def parse_week_from_list(details):
+    # Example processing, adjust based on actual list structure
+    week_data = {
+        'Learning Objectives': [],
+        'Daily Activities': {}
+    }
+    for item in details:
+        if isinstance(item, dict) and 'day' in item and 'activity' in item:
+            day = item['day']
+            week_data['Daily Activities'][day] = {
+                'Activity': item.get('activity', 'No activity listed'),
+                'Resources': item.get('resources', [])
+            }
+    return week_data
+
+
+class GenerateStudyPlanView(LoginRequiredMixin, View):
+    login_url = '/login/'
+
+    def get(self, request, *args, **kwargs):
+        user_id = kwargs.get('user_id')
+        if request.user.id != int(user_id):
+            return JsonResponse({'error': 'User not authenticated'}, status=401)
+        if request.user.id != user_id:
+            # Return a forbidden response if the user does not match
+            return HttpResponseForbidden("You are not authorized to view this page.")
+
+        if request.user.is_authenticated and request.user.id == user_id:
+            profile = get_object_or_404(Profile, user_id=user_id)
+            prompt = create_prompt(profile)
+            study_plan = get_study_plan(prompt)
+            context = {"study_plan":study_plan}
+            context = parse_study_plan(context)
+            print('tessssst',context)
+            return render(request, 'learning-plan/result_learning_style.html',context)

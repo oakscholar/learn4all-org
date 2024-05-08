@@ -8,4 +8,6 @@ sqlparse==0.4.4
 typing-extensions==4.8.0
 wheel==0.38.4
 openapi-python-client==0.19.1
-openai==1.26.0
+# openai==1.26.0
+boto3
+openai==0.28
