@@ -1,160 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <!--  Google Fonts CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Google Fonts CSS - Urbanist Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts CSS - Public Sans Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Urbanist:ital,wght@0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!--  Google Fonts CSS - Open Sans Hebrew -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
     <title>Side Menu</title>
 
     <style>
-        html,
-        body {
-            height: 100vh;
-        }
+      html,
+      body {
+        height: 100vh;
+      }
 
-        .sidebar-logo {
-            width:100px;
-            height: 40px;
-        }
+      .sidebar-logo {
+        width: 100px;
+        height: 40px;
+      }
 
-        #logout_sidebar_button {
-            position: absolute;
-            display: inline-block;
-            bottom: 0;
-            left: 15px;
-        }
+      #logout-sidebar-button {
+        position: absolute;
+        display: inline-block;
+        text-align: center;
+        bottom: 0;
+      }
 
-        .sidebar-title {
-            color: #0077FF;
-        }
+      .sidebar-title {
+        color: #0077ff;
+      }
 
-        .describe-your-goal .describe-goal-title {
-            justify-content: center;
-            align-items: center;
-        }
+      .pop-up-sidebar-button {
+        position: absolute;
+        width: 130px;
+        display: inline-block;
+        bottom: 50px;
+        border: none;
+        border-radius: 50px;
+        color: #ffffff;
+        background-color: #0077ff;
+      }
 
-        .describe-goal-title {
-            margin: 50px;
-        }
+      .pop-up-sidebar-title {
+        font-family: "Open Sans", sans-serif;
+        font-weight: 800;
+        font-style: normal;
+        color: #ffffff;
+      }
 
-        .input-group {
-            position: relative;
-        }
+      .pop-up-sidebar-title-special {
+        background: linear-gradient(to right, #ffea98, #46d3ff);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        font-size: 20px;
+      }
 
-        #input {
-            padding-right: 40px;
-        }
+      .pop-up-sidebar-desc {
+        font-family: "Public Sans", sans-serif;
+        font-weight: 200;
+        font-style: normal;
+        font-size: 14px;
+        color: #ffffff;
+      }
 
-        #input-button {
-            position: absolute;
-            right: 5px;
-            top: 5px;
-        }
+      .input-group {
+        position: relative;
+      }
 
-        .custom {
-            width: 400px;
-            padding: 30px;
-            margin: 20px;
-            border-radius: 25px;
-        }
+      #input {
+        padding-right: 40px;
+        padding: 20px;
+      }
 
-        .font-size {
-            font-size: 10px;
-        }
+      #input-button {
+        position: absolute;
+        right: 5px;
+        top: 15px;
+      }
 
-        .input-logo-color {
-            color: #FFFFFF;
-            background-image: linear-gradient(to right, #BBFFFF, #68B1E8);
-          }
+      .input-logo {
+        background: linear-gradient(to right, #bbffff, #68b1e8);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+      }
 
-        .input-logo-color:hover {
-            background-image: linear-gradient(to right, #BBFFFF, #68B1E8);
-            color: #FFFFFF;
-        }
+      .input-logo:hover {
+        background: linear-gradient(to right, #bbffff, #68b1e8);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+      }
 
-        .custom:hover {
-            box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.15);
-            background-image: linear-gradient(to right, #9FE5F7 30%, #539CE2 70%);
-        }
+      .lead {
+        font-size: 15px;
+      }
 
+      .describe-your-goal .describe-goal-title {
+        justify-content: center;
+        align-items: center;
+      }
 
+      .describe-goal-title {
+        margin: 50px;
+        padding: 10px;
+      }
+
+      .urbanist-font {
+        font-family: "Urbanist", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      .content-title {
+        color: #0d5acf;
+        font-family: "Urbanist", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        padding: 20px;
+      }
+
+      .content-description {
+        font-family: "Public Sans", sans-serif;
+        font-weight: 200;
+      }
+
+      .custom {
+        width: 400px;
+        padding: 25px;
+        margin: 20px;
+        border-radius: 30px;
+        background-image: linear-gradient(to right, #ffffff, #e1f2f8);
+      }
+
+      .custom:hover {
+        box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.15);
+        background-image: linear-gradient(to right, #ffffff, #9fe5f7);
+      }
+
+      .button-title {
+        font-family: "Public Sans", sans-serif;
+        font-weight: 600;
+        color: #000000;
+      }
+
+      .button-desc {
+        font-family: "Public Sans", sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        color: #000000;
+      }
+
+      .main-content-custom {
+        background-image: url(../static/self-evaluate-background-image.png);
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="sidenav container-fluid min-vh-100">
-        <div class="row flex-nowrap">
-            <div class="col col-auto col-md-3 col-xl-2 px-sm-2 px-0 min-vh-100">
-                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <a href="/"
-                        class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                        <img src="../static/L4A-logo-blueandblack.png" alt="hugenerd"
-                            class="sidebar-logo" />
-                    </a>
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-                        id="menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link align-middle px-0">
-                                <i class="fs-4 bi-house"></i>
-                                <span class="sidebar-title ms-1 d-none d-sm-inline">Quiz</span>
-                            </a>
-                        </li>
-                        <li id="logout_sidebar_button" class="nav nav-sidebar">
-                            <a href="#" class="nav-link align-middle px-0">
-                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                                    <span class="sidebar-title ms-1 d-none d-sm-inline">
-                                        Sign Out
-                                    </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col col-auto col-md-9 col-xl-10 py-3 min-vh-100">
-                <div class="content-header">
-                    <h2>Hi, User</h2>
-                    <p class="lead font-size">
-                        Let's start
+      <div class="row flex-nowrap">
+        <div class="col col-auto col-md-3 col-xl-2 px-sm-2 px-0 min-vh-100">
+          <div
+            class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"
+          >
+            <a
+              href="/"
+              class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+            >
+              <img
+                src="../static/L4A-logo-blueandblack.png"
+                alt="hugenerd"
+                class="sidebar-logo"
+              />
+            </a>
+            <ul
+              class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start mx-auto"
+              id="menu"
+            >
+              <li class="nav-item">
+                <a href="#" class="nav-link align-middle px-0">
+                  <i class="fs-4 bi-house"></i>
+                  <span class="sidebar-title ms-1 d-none d-sm-inline"
+                    >Quiz</span
+                  >
+                </a>
+              </li>
+              <li class="nav nav-sidebar justify-content-center">
+                <button
+                  href="#"
+                  class="nav-link align-middle px-0 pop-up-sidebar-button"
+                >
+                  <span class="sidebar-title ms-1 d-none d-sm-inline">
+                    <h5 class="pop-up-sidebar-title">
+                      Upgrade to
+                      <span class="pop-up-sidebar-title-special">Premium</span>
+                    </h5>
+                    <p class="pop-up-sidebar-desc">
+                      Get unlimited access to the best version of that can do
+                      maths, browse the web, see images, and more.
                     </p>
-                </div>
-                <div class="describe-your-goal align-items-center">
-                    <div class="describe-goal-title text-center">
-                        <h3>Describe your goal</h3>
-                        <p>Learn4All will help you!</p>
-                    </div>
-                    <div class="input-group w-75 mb-3 mx-auto align-items-center">
-                        <input type="text" id="input" class="form-control form-control-lg"
-                            placeholder="I want to become a UX designer, I have graphic design background"
-                            aria-label="ux designer" aria-describedby="basic-addon2">
-                        <button id="input-button" class="btn btn-outline-secondary form-control-lg border-0" type="button"><i class="fa fa-chevron-circle-right input-logo-color" aria-hidden="true"></i></button>
-                    </div>
-                    <div class="describe-goal-button-group text-center">
-                        <button type="button" class="btn btn-outline-secondary border-white custom">
-                            <h3>Interview Mockup</h3>
-                            <p class="font-size">I want to mock up interview with AI tutor</p>
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary border-white custom">
-                            <h3>Class Notes</h3>
-                            <p class="font-size">Generate the notes for me</p>
-                        </button>
-                        <br />
-                        <button type="button" class="btn btn-outline-secondary border-white custom">
-                            <h3>Quiz for final</h3>
-                            <p class="font-size">Generate and forecast test</p>
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary border-white custom">
-                            <h3>Presentation Preparing</h3>
-                            <p class="font-size">I want to find a mentor to improve my presentation skill</p>
-                        </button>
-                    </div>
-                </div>
-            </div>
+                  </span>
+                </button>
+              </li>
+              <li id="logout-sidebar-button" class="nav nav-sidebar nav-item">
+                <a href="#" class="nav-link align-middle px-0">
+                  <i class="fa fa-sign-out" aria-hidden="true"></i>
+                  <span class="sidebar-title ms-1 d-none d-sm-inline">
+                    Sign Out
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
+        <div
+          class="col col-auto col-md-9 col-xl-10 py-3 min-vh-100 main-content-custom"
+        >
+          <div class="content-header py-3">
+            <h2 class="urbanist-font">Hi, User</h2>
+            <p class="lead">Let's start</p>
+          </div>
+          <div class="describe-your-goal align-items-center">
+            <div class="describe-goal-title text-center">
+              <h3 class="content-title">Describe your goal</h3>
+              <p class="content-description">Learn4All will help you!</p>
+            </div>
+            <div class="input-group w-75 mb-3 mx-auto align-items-center">
+              <input
+                type="text"
+                id="input"
+                class="form-control form-control-lg"
+                placeholder="I want to become a UX designer, I have graphic design background"
+                aria-label="ux designer"
+                aria-describedby="basic-addon2"
+              />
+              <button
+                id="input-button"
+                class="btn btn-outline-secondary form-control-lg border-0"
+                type="button"
+              >
+                <i
+                  class="fa fa-chevron-circle-right fa-2x input-logo"
+                  aria-hidden="true"
+                ></i>
+              </button>
+            </div>
+            <div class="describe-goal-button-group text-center">
+              <button
+                type="button"
+                class="btn btn-outline-secondary border-white custom"
+              >
+                <h3 class="button-title">Interview Mockup</h3>
+                <p class="font-size button-desc">
+                  I want to mock up interview with AI tutor
+                </p>
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary border-white custom"
+              >
+                <h3 class="button-title">Class Notes</h3>
+                <p class="font-size button-desc">Generate the notes for me</p>
+              </button>
+              <br />
+              <button
+                type="button"
+                class="btn btn-outline-secondary border-white custom"
+              >
+                <h3 class="button-title">Quiz for final</h3>
+                <p class="font-size button-desc">Generate and forecast test</p>
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary border-white custom"
+              >
+                <h3 class="button-title">Presentation Preparing</h3>
+                <p class="font-size button-desc">
+                  I want to find a mentor to improve my presentation skill
+                </p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>
