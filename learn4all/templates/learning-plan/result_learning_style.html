@@ -185,10 +185,25 @@
             color: inherit; 
             cursor: pointer; 
             margin-right: 10px; 
+            position: relative;
         }
 
         #btn-days button:hover {
-            background-color: rgba(0, 119, 255, 0.1); /* Optional: light highlight on hover */
+            background-color: #0077FF;  /* Optional: light highlight on hover */
+        }
+
+        #btn-days button.active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: #0077FF;
+            color: #0077FF;
+            border-radius: 50%;
+            display: block;
         }
 
         .bg-2 {
@@ -246,36 +261,37 @@
         }
 
         .week-content {
-            padding: 10px;
+            /* padding: 10px; */
             margin-top: 20px;
-            background-color: #f8f9fa;
+            /* background-color: #f8f9fa; */
             border-radius: 5px;
-            border: 1px solid #ccc;
+            /* border: 1px solid #ccc; */
         }
+
+        .activity-block {
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .activity-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .resource-info {
+            font-style: italic;
+            color: #666;
+}
 
 
     </style>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const userId = '{{ request.user.id }}'; 
-            fetch(`/result_learning_style/${userId}/`) 
-                .then(response => {
-                    if (!response.ok) {
-                    return response.text().then(text => {
-                        throw new Error('Failed to fetch study plan: ' + text);
-                    });
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Study Plan Loaded', data);
-                // Proceed with updating the DOM or handling data
-            })
-            .catch(error => {
-                console.error('Fetch error:', error);
-            });
-        });
+        var data = JSON.parse('{{ json_context|safe }}');
     </script>
 </head>
     
@@ -327,11 +343,11 @@
                                 <p class="space"></p>
                                 <div class="justify-content-between">
                                     <div id="week-selector">
+                                        <a href="#" class="circle" data-week="0"></a>
                                         <a href="#" class="circle" data-week="1"></a>
                                         <a href="#" class="circle" data-week="2"></a>
                                         <a href="#" class="circle" data-week="3"></a>
                                         <a href="#" class="circle" data-week="4"></a>
-                                        <a href="#" class="circle" data-week="5"></a>
                                     </div>
                                     <!-- <hr class="line"> -->
                                 </div>
@@ -342,14 +358,14 @@
                                     <p>Running Courses</p>
                                     <button id="edit-plan">Edit the Plan</button>
                                 </div>
-                                <div id="btn-days">
-                                    <button>Mo</button>
-                                    <button>Tu</button>
-                                    <button>We</button>
-                                    <button>Th</button>
-                                    <button>Fr</button>
-                                    <button>Sa</button>
-                                    <button>Su</button>
+                                <div id="btn-days" style="padding-left: 10px;">
+                                    <button data-day="monday">Mo</button>
+                                    <button data-day="tuesday">Tu</button>
+                                    <button data-day="wednesday">We</button>
+                                    <button data-day="thursday">Th</button>
+                                    <button data-day="friday">Fr</button>
+                                    <button data-day="saturday">Sa</button>
+                                    <button data-day="sunday">Su</button>
                                 </div>
                                 <div id="week-content" class="week-content"></div> <!-- dynamic content for different wks -->
                                 
@@ -365,25 +381,89 @@
     </body>
 
     <script>
+        var contextData = JSON.parse('{{ json_context|safe }}');
+        console.log("contextData",contextData)
         
-
-
+        
         function signOut() {
             alert('You have been signed out.');
             // Redirect to login or another appropriate page
             window.location.href = '/login';
         }
 
-        document.querySelectorAll('.circle').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault(); // Prevent the default anchor click behavior
-                const weekNumber = this.getAttribute('data-week');
-                const contentDiv = document.getElementById('week-content');
-                contentDiv.innerHTML = `<p>Content for week ${weekNumber}</p>`; // Dynamically update content
-            });
-        })
+        document.addEventListener('DOMContentLoaded', function() {
+            const weekContentDiv = document.getElementById('week-content');
+            const weekCircles = document.querySelectorAll('#week-selector .circle');
+            const dayButtons = document.querySelectorAll('#btn-days button');
+            let currentWeek = 0; // Default to first week
+            let currentDay = 'monday'; // Default to Monday
 
- 
+            // function updateContent() {
+            //     const weekData = contextData['5-week_study_plan'][currentWeek];
+            //     const dayData = weekData[currentDay];
+                
+            //     if (dayData) {
+            //         const activities = dayData.activities.join(', ');
+            //         const resources = dayData.resources.join(', ');
+            //         weekContentDiv.innerHTML = `<strong>Activities:</strong> ${activities}<br><strong>Resources:</strong> ${resources}`;
+            //     } else {
+            //         weekContentDiv.innerHTML = 'No data available for this day.';
+            //     }
+            // }
+
+            function updateContent() {
+                console.log(`Updating content for week ${currentWeek}, day ${currentDay}`);
+                const weekData = contextData['5-week_study_plan'][currentWeek];
+                const dayData = weekData[currentDay.toLowerCase()]; // Ensure day is accessed correctly
+                weekContentDiv.innerHTML = ''; // Clear previous contents
+
+                dayButtons.forEach(button => {
+                    button.classList.remove('active');
+                });
+                document.querySelector(`#btn-days button[data-day="${currentDay}"]`).classList.add('active');
+
+                if (dayData && dayData.activities && dayData.activities.length > 0) {
+                    dayData.activities.forEach((activity, index) => {
+                        const resource = (dayData.resources && dayData.resources[index]) || 'No resource available';
+                        const activityBlock = document.createElement('div');
+                        activityBlock.className = 'activity-block';
+
+                        const activityTitle = document.createElement('div');
+                        activityTitle.className = 'activity-title';
+                        activityTitle.textContent = `Activity: ${activity}`;
+
+                        const resourceInfo = document.createElement('div');
+                        resourceInfo.className = 'resource-info';
+                        resourceInfo.textContent = `Resource: ${resource}`;
+
+                        activityBlock.appendChild(activityTitle);
+                        activityBlock.appendChild(resourceInfo);
+                        weekContentDiv.appendChild(activityBlock);
+                    });
+                } else {
+                    weekContentDiv.innerHTML = 'No activities listed for this day.';
+                }
+            }
+
+            
+            weekCircles.forEach(circle => {
+                circle.addEventListener('click', function() {
+                    currentWeek = parseInt(this.getAttribute('data-week'));
+                    updateContent(); // Update content when week is changed
+                });
+            });
+
+            dayButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    currentDay = this.getAttribute('data-day');
+                    updateContent(); // Update content when day is changed
+                });
+            });
+
+            // Initialize with first week's Monday data
+            updateContent();
+        });
+
     </script>
 
 </html>

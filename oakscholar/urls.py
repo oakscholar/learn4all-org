@@ -15,11 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.contrib.auth.views import LogoutView
 from learn4all.views import *
 from learn4all import views
 from django.contrib.auth.views import LogoutView 
+from django.views.generic import TemplateView
 
 urlpatterns = [
     # Admin
@@ -44,5 +45,7 @@ urlpatterns = [
     path('describe_goal/', views.DescribeGoalView.as_view(), name='describeGoal'),
     path('evaluate_learning_style/', views.EvaluateLearningStyleView.as_view(), name='evaluateLearningStyle'),
     path('result_learning_style/<int:user_id>/', views.GenerateStudyPlanView.as_view(), name='resultLearningStyle'),
+    re_path(r'^result_learning_style/(.*)$', TemplateView.as_view(template_name='index.html')),
+
     
 ]

@@ -122,11 +122,34 @@ def get_user_profile(request, user_id):
 
 
 def create_prompt(profile): #Provide valid JSON output. 
-    prompt = (f"Provide valid JSON output. Generate a detailed 5-week study plan in JSON format, tailored for an individual with specific attributes. "
-            f"Profile details: Goal - {profile.goal}, Skills - {profile.skill}, Learning Style - {profile.learning_style}. "
-            f"Each week should clearly define its learning objectives. "
-            f"Provide a comprehensive daily learning plan from Monday to Sunday, listing the activities and specific resources needed each day. "
-            f"The output should be structured as JSON to ensure easy integration and practical application in line with the user's goal, skills, and preferred learning style.")
+    # prompt = (f"Provide valid JSON output. Generate a detailed 5-week study plan in JSON format, tailored for an individual with specific attributes. "
+    #         f"Profile details: Goal - {profile.goal}, Skills - {profile.skill}, Learning Style - {profile.learning_style}. "
+    #         f"Each week should clearly define its learning objectives. "
+    #         f"Provide a comprehensive daily learning plan from Monday to Sunday, listing the activities and specific resources needed each day. "
+    #         f"The output should be structured as JSON to ensure easy integration and practical application in line with the user's goal, skills, and preferred learning style.")
+    prompt = (f"Create a 5-week study plan in JSON format, specifically tailored to a user's profile with detailed attributes. "
+              f"The profile details are as follows: Goal - {profile.goal}, Skills - {profile.skill}, Learning Style - {profile.learning_style}. "
+              f"Format the output as a JSON object with a top-level key '5-week_study_plan' containing an array of week objects. "
+              f"Each week object should include the following keys: "
+              f"'week_number' with a value from 1 to 5, "
+              f"'learning_objectives' as an array of strings describing the goals for the week, "
+              f"and keys for each day of the week ('monday' to 'sunday'). "
+              f"Each day key should map to an object with 'activities' as an array of strings detailing planned study activities, "
+              f"and 'resources' as an array of strings listing the necessary materials. "
+              f"Ensure that each week is comprehensive and tailored to progressively achieve the user's goal, build on skills, and align with the preferred learning style. "
+              f"Here is an example structure for clarity:\n"
+              f"{{\n"
+              f"  '5-week_study_plan': [\n"
+              f"    {{\n"
+              f"      'week_number': 1,\n"
+              f"      'learning_objectives': ['objective1', 'objective2'],\n"
+              f"      'monday': {{ 'activities': ['activity1', 'activity2'], 'resources': ['resource1', 'resource2'] }},\n"
+              f"      // continue with other days\n"
+              f"    }}\n"
+              f"    // continue with other weeks\n"
+              f"  ]\n"
+              f"}}\n"
+              f"This detailed prompt should guide you to generate a consistent and structured output suitable for integration into an educational platform.")
     return prompt
 
 
@@ -176,12 +199,8 @@ class GenerateStudyPlanView(LoginRequiredMixin, View):
             profile = get_object_or_404(Profile, user_id=user_id)
             prompt = create_prompt(profile)
             study_plan = get_study_plan(prompt)
-            # context = {"study_plan":study_plan}
-            context = json.loads(study_plan)#parse_study_plan(context)
+            context = json.loads(study_plan) #parse_study_plan(context)
             print('test-context',context)
-            context.update({
-                'user_id': user_id,  # Pass user_id to use in the JavaScript fetch call
-                'first_name': request.user.first_name  
-            })
-            
-            return render(request, 'learning-plan/result_learning_style.html',context)
+            json_context = json.dumps(context)
+
+            return render(request, 'learning-plan/result_learning_style.html',{'json_context':json_context})
