@@ -33,7 +33,7 @@ urlpatterns = [
     path('contact/', views.home, name='contact'),
     path("login/", MyLoginView.as_view(template_name='profile/login.html'), name="login"),
     path("signup/", SignUpView.as_view(template_name='profile/signup.html'), name="signup"),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     # path('profile/', views.update_profile, name='profile'),
 
 
@@ -43,5 +43,6 @@ urlpatterns = [
     # Learning Plan 
     path('describe_goal/', views.DescribeGoalView.as_view(), name='describeGoal'),
     path('evaluate_learning_style/', views.EvaluateLearningStyleView.as_view(), name='evaluateLearningStyle'),
-    path('result_learning_style/<int:user_id>/', views.GenerateStudyPlanView, name='resultLearningStyle'),
+    path('result_learning_style/<int:user_id>/', views.GenerateStudyPlanView.as_view(), name='resultLearningStyle'),
+    
 ]
