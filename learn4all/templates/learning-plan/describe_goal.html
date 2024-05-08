@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <!--  Google Fonts CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Google Fonts CSS - Urbanist Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts CSS - Public Sans Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Urbanist:ital,wght@0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!--  Google Fonts CSS - Open Sans Hebrew -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Descirbe Your Goal</title>
+
+    <style>
+      html,
+      body {
+        height: 100vh;
+      }
+
+      .sidebar-logo {
+        width: 144px;
+        height: 46px;
+      }
+
+      #logout-sidebar-button {
+        position: absolute;
+        display: inline-block;
+        text-align: center;
+        bottom: 0;
+      }
+
+      .sidebar-title {
+        color: #0077ff;
+      }
+
+      .pop-up-sidebar-button {
+        position: absolute;
+        width: 130px;
+        display: inline-block;
+        bottom: 50px;
+        border: none;
+        border-radius: 50px;
+        color: #ffffff;
+        background-color: #0077ff;
+      }
+
+      .pop-up-sidebar-title {
+        font-family: "Open Sans", sans-serif;
+        font-weight: 800;
+        font-style: normal;
+        color: #ffffff;
+      }
+
+      .pop-up-sidebar-title-special {
+        background: linear-gradient(to right, #ffea98, #46d3ff);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        font-size: 20px;
+      }
+
+      .pop-up-sidebar-desc {
+        font-family: "Public Sans", sans-serif;
+        font-weight: 200;
+        font-style: normal;
+        font-size: 14px;
+        color: #ffffff;
+      }
+
+      .input-group {
+        position: relative;
+      }
+
+      #input {
+        padding-right: 40px;
+        padding: 20px;
+      }
+
+      #input-button {
+        position: absolute;
+        right: 5px;
+        top: 15px;
+      }
+
+      .input-logo {
+        background: linear-gradient(to right, #bbffff, #68b1e8);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+      }
+
+      .input-logo:hover {
+        background: linear-gradient(to right, #bbffff, #68b1e8);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+      }
+
+      .lead {
+        font-size: 15px;
+      }
+
+      .describe-your-goal .describe-goal-title {
+        justify-content: center;
+        align-items: center;
+      }
+
+      .describe-goal-title {
+        margin: 50px;
+        padding: 10px;
+      }
+
+      .urbanist-font {
+        font-family: "Urbanist", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      .content-title {
+        color: #0d5acf;
+        font-family: "Urbanist", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        padding: 20px;
+      }
+
+      .content-description {
+        font-family: "Public Sans", sans-serif;
+        font-weight: 200;
+      }
+
+      .custom {
+        width: 400px;
+        padding: 25px;
+        margin: 20px;
+        border-radius: 30px;
+        background-image: linear-gradient(to right, #ffffff, #e1f2f8);
+      }
+
+      .custom:hover {
+        box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.15);
+        background-image: linear-gradient(to right, #ffffff, #9fe5f7);
+      }
+
+      .button-title {
+        font-family: "Public Sans", sans-serif;
+        font-weight: 600;
+        color: #000000;
+      }
+
+      .button-desc {
+        font-family: "Public Sans", sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        color: #000000;
+      }
+
+      .main-content-custom {
+        background-image: url(../../static/self-evaluate-background-image.png);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="sidenav container-fluid min-vh-100">
+      <div class="row flex-nowrap">
+        <div class="col col-auto col-md-3 col-xl-2 px-sm-2 px-0 min-vh-100">
+          <div
+            class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"
+          >
+            <a
+              href="/"
+              class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+            >
+              <img
+                src="../../static/L4A-logo-blueandblack.png"
+                alt="hugenerd"
+                class="sidebar-logo"
+              />
+            </a>
+            <ul
+              class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start mx-auto"
+              id="menu"
+            >
+              <li class="nav-item">
+                <a href="#" class="nav-link align-middle px-0">
+                  <i class="fs-4 bi-house"></i>
+                  <span class="sidebar-title ms-1 d-none d-sm-inline"
+                    >Quiz</span
+                  >
+                </a>
+              </li>
+              <li class="nav nav-sidebar justify-content-center">
+                <button
+                  href="#"
+                  class="nav-link align-middle px-0 pop-up-sidebar-button"
+                >
+                  <span class="sidebar-title ms-1 d-none d-sm-inline">
+                    <h5 class="pop-up-sidebar-title">
+                      Upgrade to
+                      <span class="pop-up-sidebar-title-special">Premium</span>
+                    </h5>
+                    <p class="pop-up-sidebar-desc">
+                      Get unlimited access to the best version of that can do
+                      maths, browse the web, see images, and more.
+                    </p>
+                  </span>
+                </button>
+              </li>
+              <li id="logout-sidebar-button" class="nav nav-sidebar nav-item">
+                <a href="{% url 'logout' %}" class="nav-link align-middle px-0">
+                  <i class="fa fa-sign-out" aria-hidden="true"></i>
+                  <span class="sidebar-title ms-1 d-none d-sm-inline">
+                    Sign Out
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="col col-auto col-md-9 col-xl-10 py-3 min-vh-100 main-content-custom"
+        >
+          <div class="content-header py-3">
+            <h2 class="urbanist-font">Hi, {{ request.user.first_name }}</h2>
+            <p class="lead">Let's start</p>
+          </div>
+          <div class="describe-your-goal align-items-center">
+            <div class="describe-goal-title text-center">
+              <h3 class="content-title">Describe your goal</h3>
+              <p class="content-description">Learn4All will help you!</p>
+            </div>
+
+            <div class="input-group w-75 mb-3 mx-auto align-items-center">
+              <input
+                type="text"
+                id="input"
+                class="form-control form-control-lg"
+                placeholder="I want to become a UX designer, I have graphic design background"
+                aria-label="ux designer"
+                aria-describedby="basic-addon2"
+              />
+              <button
+                id="input-button"
+                class="btn btn-outline-secondary form-control-lg border-0"
+                type="button"
+              >
+                <i
+                  class="fa fa-chevron-circle-right fa-2x input-logo"
+                  aria-hidden="true"
+                ></i>
+              </button>
+            </div>
+            <div class="describe-goal-button-group text-center">
+              <button
+                type="button"
+                class="btn btn-outline-secondary border-white custom"
+                onclick="submitGoal('Interview Mockup')"
+              >
+                <h3 class="button-title">Interview Mockup</h3>
+                <p class="font-size button-desc">
+                  I want to mock up interview with AI tutor
+                </p>
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary border-white custom"
+                onclick="submitGoal('Class Notes')"
+              >
+                <h3 class="button-title">Class Notes</h3>
+                <p class="font-size button-desc">Generate the notes for me</p>
+              </button>
+              <br />
+              <button
+                type="button"
+                class="btn btn-outline-secondary border-white custom"
+                onclick="submitGoal('Quiz for final')"
+              >
+                <h3 class="button-title">Quiz for final</h3>
+                <p class="font-size button-desc">Generate and forecast test</p>
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary border-white custom"
+                onclick="submitGoal('Presentation Preparing')"
+              >
+                <h3 class="button-title">Presentation Preparing</h3>
+                <p class="font-size button-desc">
+                  I want to find a mentor to improve my presentation skill
+                </p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function submitGoal(goal) {
+      fetch('{% url "describeGoal" %}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({goal: goal})
+      })
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok.');
+        return response.json();
+      })
+      .then(data => {
+        console.log('Success:', data);
+        window.location.href = "{% url 'evaluateLearningStyle' %}";
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert('Failed to submit goal, please try again.');
+      });
+    }
+  
+    document.getElementById('input-button').addEventListener('click', function() {
+      var inputField = document.getElementById('input');
+      if (inputField.value.trim() === '') {
+        alert('Please enter something to describe your goal.');
+        inputField.focus();
+      } else {
+        submitGoal(inputField.value);
+      }
+    });
+  
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+  
+    function signOut() {
+      alert('You have been signed out.');
+      window.location.href = '/login';
+    }
+  </script>
+  
+</html>

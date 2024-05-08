@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!--  Google Fonts CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Google Fonts CSS - Urbanist Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <!-- Google Fonts CSS - Public Sans Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Urbanist:ital,wght@0,700;1,700&display=swap"
+    rel="stylesheet">
+  <!--  Google Fonts CSS - Open Sans Hebrew -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+
+
+  <title>Describe Learning Style</title>
+
+  <style>
+    html,
+    body {
+      height: 100vh;
+    }
+
+    /*  Background-color needs to change */
+    .nav-item:hover {
+      background-color: #FFFFFF;
+    }
+
+    .sidebar-logo {
+      width: 144px;
+      height: 46px;
+    }
+
+    #logout-sidebar-button {
+      position: absolute;
+      display: inline-block;
+      text-align: center;
+      bottom: 0;
+    }
+
+    .sidebar-title {
+      color: #0077FF;
+    }
+
+    .pop-up-sidebar-button {
+      position: absolute;
+      width: 130px;
+      display: inline-block;
+      bottom: 50px;
+      border: none;
+      border-radius: 50px;
+      color: #FFFFFF;
+      background-color: #0077FF;
+    }
+
+    .pop-up-sidebar-title {
+      font-family: "Open Sans", sans-serif;
+      font-weight: 800;
+      font-style: normal;
+      color: #FFFFFF;
+    }
+
+    .pop-up-sidebar-title-special {
+      background: linear-gradient(to right, #FFEA98, #46D3FF);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      font-size: 20px;
+    }
+
+    .pop-up-sidebar-desc {
+      font-family: "Public Sans", sans-serif;
+      font-weight: 200;
+      font-style: normal;
+      font-size: 14px;
+      color: #FFFFFF;
+    }
+
+    .lead {
+      font-size: 15px;
+    }
+
+    .choose-your-learning-style .choose-style-title {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .choose-style-title {
+      margin: 0px;
+      padding: 10px;
+    }
+
+    .urbanist-font {
+      font-family: "Urbanist", sans-serif;
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    .content-title {
+      color: #0D5ACF;
+      font-family: "Urbanist", sans-serif;
+      font-weight: 700;
+      font-style: normal;
+      padding: 20px;
+    }
+
+    .content-description {
+      font-family: "Public Sans", sans-serif;
+      font-weight: 200;
+    }
+
+    .bold-text {
+      font-family: "Public Sans", sans-serif;
+      font-weight: 700;
+    }
+
+    .custom {
+      width: 400px;
+      padding: 25px;
+      margin: 20px;
+      border-radius: 30px;
+      background-image: linear-gradient(to right, #FFFFFF, #E1F2F8);
+    }
+
+    .custom:hover {
+      box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.15);
+      background-image: linear-gradient(to right, #FFFFFF, #9FE5F7);
+    }
+
+    .button-title {
+      font-family: "Public Sans", sans-serif;
+      font-weight: 600;
+      color: #000000;
+    }
+
+    .button-desc {
+      font-family: "Public Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #000000;
+    }
+
+    .main-content-custom {
+      background-image: url(../../static/self-evaluate-background-image.png);
+    }
+
+    .nav-sidebar-subs {
+        display: block;
+        visibility: visible;
+        text-align:left;
+        width: 60%; 
+        font-size: 80%;
+        position: absolute; 
+        bottom: 30px;  
+        background-color: #0077FF;  
+        color: white; 
+        border-radius: 15px;  
+        padding: 15px;  
+        box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);  
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sidenav container-fluid min-vh-100">
+    <div class="row flex-nowrap">
+      <div class="col col-auto col-md-3 col-xl-2 px-sm-2 px-0 min-vh-100">
+        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+          <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <img src="../../static/L4A-logo-blueandblack.png" alt="hugenerd" class="sidebar-logo" />
+          </a>
+          <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start mx-auto"
+            id="menu">
+            <li class="nav-item">
+              <a href="#" class="nav-link align-middle px-0">
+                <i class="fs-4 bi-house"></i>
+                <span class="sidebar-title ms-1 d-none d-sm-inline">Quiz</span>
+              </a>
+            </li>
+            <li class="nav nav-sidebar justify-content-center">
+              <button href="#" class="nav-link align-middle px-0 pop-up-sidebar-button">
+                <span class="sidebar-title ms-1 d-none d-sm-inline">
+                  <h5 class="pop-up-sidebar-title">
+                    Upgrade to
+                    <span class="pop-up-sidebar-title-special">Premium</span>
+                  </h5>
+                  <p class="pop-up-sidebar-desc">Get unlimited access to the best version of that can do maths, browse
+                    the web, see images, and more.</p>
+                </span>
+              </button>
+            </li>
+            <li id="logout-sidebar-button" class="nav nav-sidebar nav-item">
+              <a href="{% url 'logout' %}" class="nav-link align-middle px-0">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <span class="sidebar-title ms-1 d-none d-sm-inline">
+                  Sign Out
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col col-auto col-md-9 col-xl-10 py-3 min-vh-100 main-content-custom">
+        <div class="content-header py-3">
+          <h2 class="urbanist-font">Hi, {{request.user.first_name}}</h2>
+          <p class="lead">
+            Let's start
+          </p>
+        </div>
+        <div class="choose-your-learning-style align-items-center">
+          <div class="choose-style-title text-center">
+            <h3 class="content-title">Choose your learning style</h3>
+            <p class="content-description">There are many learning styles that show people's <span
+                class="bold-text">preferences</span> for learning and processing new information. While these are not
+              hard scientific categories and should be used more as guidelines than rules, there are <span
+                class="bold-text">8 learning styles</span> that are well recognized and act as useful tools in tailoring
+              lessons to learners. And some are surprisingly specific.</p>
+          </div>
+          <div class="choose-style-button-group text-center">
+            <button type="button" class="btn btn-outline-secondary border-white custom" onclick="submitChoice('Visual')">
+              <h3 class="button-title">Visual</h3>
+              <p class="button-desc">Spatial Learners</p>
+            </button>
+            <button type="button" class="btn btn-outline-secondary border-white custom" onclick="submitChoice('Logical')">
+              <h3 class="button-title">Logical</h3>
+              <p class="button-desc">Analytical Learners</p>
+            </button>
+            <br />
+            <button type="button" class="btn btn-outline-secondary border-white custom" onclick="submitChoice('Aural')">
+              <h3 class="button-title">Aural</h3>
+              <p class="button-desc">Audio Learners</p>
+            </button>
+            <button type="button" class="btn btn-outline-secondary border-white custom" onclick="submitChoice('Social')">
+              <h3 class="button-title">Social</h3>
+              <p class="button-desc">Linguistic Learners</p>
+            </button>
+            <br />
+            <button type="button" class="btn btn-outline-secondary border-white custom" onclick="submitChoice('Physical')">
+              <h3 class="button-title">Physical</h3>
+              <p class="button-desc">Tactile Learners</p>
+            </button>
+            <button type="button" class="btn btn-outline-secondary border-white custom" onclick="submitChoice('Solo Learners')">
+              <h3 class="button-title">Solo Learners</h3>
+              <p class="button-desc"> </p>
+            </button>
+            <br />
+            <button type="button" class="btn btn-outline-secondary border-white custom" onclick="submitChoice('Verbal')">
+              <h3 class="button-title">Verbal</h3>
+              <p class="button-desc">Linguistic Learners</p>
+            </button>
+            <button type="button" class="btn btn-outline-secondary border-white custom" onclick="submitChoice('Natural/Nature Learners')">
+              <h3 class="button-title">Natural/Nature Learners</h3>
+              <p class="button-desc"> </p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+
+<script>
+  function submitChoice(choice) {
+    fetch('{% url "evaluateLearningStyle" %}', { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken'),  
+      },
+      body: JSON.stringify({learning_style: choice})
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Something went wrong on server side.');
+      }
+    })
+    .then(data => {
+      window.location.href = `/result_learning_style/${data.user_id}/`; 
+    })
+    .catch(error => console.error('Failed to save choice:', error));
+  }
+
+  function getCookie(name) {  // Function to get a cookie by name
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  function signOut() {
+    alert('You have been signed out.');
+    window.location.href = '/login';
+  }
+</script>
+
+</html>

@@ -1,0 +1,389 @@
+<html lang="en">
+<head>
+    <title>Learn4All Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <!--  Google Fonts CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Google Fonts CSS - Urbanist Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <!-- Google Fonts CSS - Public Sans Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Urbanist:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <!--  Google Fonts CSS - Open Sans Hebrew -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        html,
+        body {
+            height: 100vh;
+        }
+
+        /*  Background-color needs to change */
+        .nav-item:hover {
+            background-color: #FFFFFF;
+        }
+
+        .sidebar-logo {
+            width:144px;
+            height: 46px;
+        }
+
+        #logout_sidebar_button {
+            position: absolute;
+            display: inline-block;
+            bottom: 0;
+            left: 15px;
+        }
+
+        .sidebar-title {
+            color: #0077FF;
+        }
+
+        .describe-your-goal .describe-goal-title {
+            justify-content: center;
+            align-items: center;
+        } 
+
+        .describe-goal-title {
+            margin: px;
+            padding: 10px;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        #input {
+            padding-right: 40px;
+        }
+
+        #input-button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+        }
+
+        .custom {
+            width: 400px;
+            padding: 30px;
+            margin: 20px;
+            border-radius: 25px;
+        }
+
+        .font-size {
+            font-size: 10px;
+        }
+
+        .input-logo-color {
+            color: #FFFFFF;
+            background-image: linear-gradient(to right, #BBFFFF, #68B1E8);
+            }
+
+        .input-logo-color:hover {
+            background-image: linear-gradient(to right, #BBFFFF, #68B1E8);
+            color: #FFFFFF;
+        }
+
+        .custom:hover {
+            box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.15);
+            background-image: linear-gradient(to right, #9FE5F7 30%, #539CE2 70%);
+        }
+
+        .nav-sidebar-subs #subs-prime-a {
+            color: white; 
+            font-weight: bold;
+            padding-bottom: 20px;
+            display: block;
+            
+        }
+
+        .nav-sidebar-subs {
+            display: block;
+            visibility: visible;
+            text-align:left;
+            width: 60%; 
+            font-size: 80%;
+            position: absolute; 
+            bottom: 30px;  
+            background-color: #0077FF;  
+            color: white; 
+            border-radius: 15px;  
+            padding: 15px;  
+            box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);  
+        }
+
+        .plans {
+            display: block;
+            visibility: visible;
+            text-align:left;
+            width: 90%; 
+            font-weight: bold;
+            font-size: 15px;
+            position: absolute; 
+            padding-bottom: 30px;  
+            background: linear-gradient(0.25turn, #ffeda866, rgba(255, 255, 255, 0.4), rgba(187, 255, 255, 0.4)); /* #FFEDA8, #FFFF, #BBFFFF)*/
+            color: black; 
+            border-radius: 5px;  
+            padding: 15px;  
+            left: 30px;
+            right: 40px;
+        }
+
+        #week-selector {
+            display: flex;
+            justify-content: center;
+            gap:200px; /* Adjust the space between circles */
+        }
+
+        .circle {
+            display: block;
+            width: 20px; /* Circle size */
+            height: 20px;
+            border-color: #0077FF;
+            border: 2px solid #0D5ACF; 
+            background-color: #FFFFFF;
+            background-blend-mode: darken;
+            border-radius: 50%; /* Make it round */
+            cursor: pointer;
+        }
+
+        .circle:hover {
+            background-color: #0077FF; /* Color change on hover */
+        }
+
+        #edit-plan {
+            background-color: transparent;
+            color:#0D5ACF;
+            border: 2px #0077FF solid;
+            border-radius: 20px;
+            font-weight: bold;
+            width: auto;
+            padding: 5px;
+            padding-left:20px;
+            padding-right:20px;
+            cursor: pointer;
+            left:auto;
+            right:10px;
+
+        }
+
+        #btn-days button {
+            padding: 0;
+            border: none;
+            background: none;
+            color: inherit; 
+            cursor: pointer; 
+            margin-right: 10px; 
+        }
+
+        #btn-days button:hover {
+            background-color: rgba(0, 119, 255, 0.1); /* Optional: light highlight on hover */
+        }
+
+        .bg-2 {
+            /* background: linear-gradient(to bottom right, 
+                #FFEDA8 0%, 
+                #FFFFFF 32%, 
+                #9FDDDD 47%,
+                #C9CAE2 68%, 
+                #A6C4D9 100%); */
+            background-image: url(../../static/self-evaluate-background-image.png);
+            display: block;
+            visibility: visible;
+            /* background-image: url(../static/self-evaluate-background-image.png); */
+        }
+
+        .space {
+            margin-bottom: 2em;
+        }
+
+        .pop-up-sidebar-title {
+            font-family: "Open Sans", sans-serif;
+            font-weight: 800;
+            font-style: normal;
+            color: #FFFFFF;
+        }
+
+        .pop-up-sidebar-title-special {
+            background: linear-gradient(to right, #FFEA98, #46D3FF);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            font-size: 20px;
+        }
+
+        .urbanist-font {
+            font-family: "Urbanist", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .lead {
+            font-size: 15px;
+        }
+
+        .content-title {
+            color: #0D5ACF;
+            font-family: "Urbanist", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            padding: 20px;
+        }
+        
+        .line {
+            border-bottom: 1px solid #888;
+            line-height: 1.5;
+        }
+
+        .week-content {
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userId = '{{ request.user.id }}'; 
+            fetch(`/result_learning_style/${userId}/`) 
+                .then(response => {
+                    if (!response.ok) {
+                    return response.text().then(text => {
+                        throw new Error('Failed to fetch study plan: ' + text);
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Study Plan Loaded', data);
+                // Proceed with updating the DOM or handling data
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+        });
+    </script>
+</head>
+    
+    <body>
+        <div class="sidenav container-fluid min-vh-100">
+            <div class="row flex-nowrap">
+                <div class="col col-auto col-md-3 col-xl-2 px-sm-2 px-0 min-vh-100 bg-1">
+                    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                        <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <img src="../../static/L4A-logo-blueandblack.png" alt="Learn4AllLogo" class="sidebar-logo">
+                        </a>
+                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+                            id="menu">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link align-middle px-0">
+                                    <i class="fs-4 bi-house"></i>
+                                    <span class="sidebar-title ms-1 d-none d-sm-inline">Quiz</span>
+                                </a>
+                            </li>
+                            <div class="nav nav-sidebar-subs ">
+                                <!-- <a id="subs-prime-a" href="#">Upgrade to Premium</a> -->
+                                <a class="pop-up-sidebar-title">
+                                    Upgrade to
+                                    <span class="pop-up-sidebar-title-special">Premium</span>
+                                </a>
+                                <p>Get unlimited access to the best version of each course, maths, browse the web, see images, and more.</p>
+                            </div>
+                            <li id="logout_sidebar_button" class="nav nav-sidebar nav-item">
+                                <a href="{% url 'logout' %}" class="nav-link align-middle px-0">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    <span class="sidebar-title ms-1 d-none d-sm-inline">Sign Out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col col-auto col-md-9 col-xl-10 py-3 min-vh-100 bg-2">
+                    <div class="content-header py-3">
+                        <h2 class="urbanist-font">Hi, {{request.user.first_name}}</h2>
+                        <p class="lead">
+                            Let's start
+                        </p>
+                    </div>
+                    <div class="describe-your-goal align-items-center">
+                        <div">
+                            <div class="describe-goal-title text-center">
+                                <h3 class="content-title">We have your study plan ready</h3>
+                                <!-- wk1-10 -->
+                                <p class="space"></p>
+                                <div class="justify-content-between">
+                                    <div id="week-selector">
+                                        <a href="#" class="circle" data-week="1"></a>
+                                        <a href="#" class="circle" data-week="2"></a>
+                                        <a href="#" class="circle" data-week="3"></a>
+                                        <a href="#" class="circle" data-week="4"></a>
+                                        <a href="#" class="circle" data-week="5"></a>
+                                    </div>
+                                    <!-- <hr class="line"> -->
+                                </div>
+                                <p class="space"></p>
+                            </div>
+                            <div class="plans mb-3 mx-auto align-items-center">
+                                <div class="d-flex justify-content-between">
+                                    <p>Running Courses</p>
+                                    <button id="edit-plan">Edit the Plan</button>
+                                </div>
+                                <div id="btn-days">
+                                    <button>Mo</button>
+                                    <button>Tu</button>
+                                    <button>We</button>
+                                    <button>Th</button>
+                                    <button>Fr</button>
+                                    <button>Sa</button>
+                                    <button>Su</button>
+                                </div>
+                                <div id="week-content" class="week-content"></div> <!-- dynamic content for different wks -->
+                                
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </body>
+
+    <script>
+        
+
+
+        function signOut() {
+            alert('You have been signed out.');
+            // Redirect to login or another appropriate page
+            window.location.href = '/login';
+        }
+
+        document.querySelectorAll('.circle').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent the default anchor click behavior
+                const weekNumber = this.getAttribute('data-week');
+                const contentDiv = document.getElementById('week-content');
+                contentDiv.innerHTML = `<p>Content for week ${weekNumber}</p>`; // Dynamically update content
+            });
+        })
+
+ 
+    </script>
+
+</html>
