@@ -1,7 +1,8 @@
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django import forms
 from .models import *
-
+from django.contrib.auth import get_user_model, authenticate
+from django.core.exceptions import ValidationError
 
 
 
@@ -34,6 +35,23 @@ class CustomUserCreationForm(UserCreationForm):
         return user
     
 
+class EmailLoginForm(forms.Form):
+    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email', 'class': 'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'form-control'}))
+
+    def clean(self):
+        email = self.cleaned_data.get('email')
+        password = self.cleaned_data.get('password')
+        if email and password:
+            self.user = authenticate(username=email, password=password)
+            if self.user is None:
+                raise ValidationError("Invalid email or password")
+        return self.cleaned_data
+
+    def get_user(self):
+        return self.user
+    
+        
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser

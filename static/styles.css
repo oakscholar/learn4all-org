@@ -32,17 +32,19 @@ nav ul li a:hover {
 body {
     background-image: url("../learn4all/static/profile-bg-moon.png");
     background-size: cover;
+    /* background-image: linear-gradient(#BBFFFF 0%, #FFC727 69%, #9163AD 100%);
+    background-image: radial-gradient(#DBBE49 0%, #FFFFFF 32%, #9FDDDD 47%, #C9CAE2 68%, #A6C4D9 100%); */
 }
 
 .card {
     min-width: 400px; 
     width:auto;
-    top: 50%; 
-    right: 0;
-    height: 500px;
+    top: 15%; 
+    right: 10%;
+    /* height: 500px; */
+    height: auto;
     background-color: #e7effa;
-    /* background-image: url("../learn4all/static/signin-bg.png"); */
-    background-image: url("../learn4all/static/profile-bg-moon.png");
+    background-image: url("../learn4all/static/signin-bg.png");
     /* background: radial-gradient(#FFC727 0%, #45D3FF 32%, #0D5ACF 100%); */
     /* background-blend-mode: overlay; */
     border-radius: 10px; 
@@ -50,7 +52,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     position: absolute;
-    transform: translate(-50%, -50%);
     /* font-family: 'Poppins', sans-serif; */
 }
 
@@ -151,10 +152,56 @@ button:hover {
     height: 30px; padding-right: 7px;
 }
 
+.login-buttons {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    padding: 5px; 
+    width: 481.13px;
+    height:auto;
+    left: 0;
+}
+
+.icon-button {
+    left:0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.icon-button img {
+    width: 60px;
+    height: 60px;
+}
+
+.text-button {
+    padding: 5px 20px;
+    background-image: linear-gradient(#FFFFFF 5%, #BBFFFF 100%);
+    border: 2px solid #4285F4; 
+    color: #4285F4;
+    border-radius: 20px; 
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+}
+
+.text-button:hover {
+    background-color: #4285F4; 
+    color: white; 
+}
+
 .right-most {
     float: right;
     height: 30px;
     margin-left: auto;
+}
+
+.login-button:hover {
+    background-color: #357ae8; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .term {
