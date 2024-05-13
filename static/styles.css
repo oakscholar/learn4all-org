@@ -24,3 +24,143 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #555;
 }
+
+
+
+
+/* Main styling for the login card */
+body {
+    background-image: url("../learn4all/static/profile-bg-moon.png");
+    background-size: cover;
+}
+
+.card {
+    min-width: 400px; 
+    width:auto;
+    top: 50%; 
+    right: 0;
+    height: 500px;
+    background-color: #e7effa;
+    /* background-image: url("../learn4all/static/signin-bg.png"); */
+    background-image: url("../learn4all/static/profile-bg-moon.png");
+    /* background: radial-gradient(#FFC727 0%, #45D3FF 32%, #0D5ACF 100%); */
+    /* background-blend-mode: overlay; */
+    border-radius: 10px; 
+    border-color: #2a72de;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    /* font-family: 'Poppins', sans-serif; */
+}
+
+/* Styling the form elements */
+input[type="email"], input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0e5ccd; /* Matching the theme */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+.button-icon:last-child {
+    margin-right: 0;
+}
+
+button:hover {
+    background-color: #0a69ed; /* A slightly lighter shade for hover effect */
+}
+
+/* Additional styles for placeholders and icons */
+::placeholder {
+    color: #bbb; /* Light grey placeholder text */
+}
+
+.fa {
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 0.5em); /* Center vertically in the input */
+}
+
+/* Ensure the form and other elements are centered inside the card */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-title {
+    width: 200px;
+    text-align: center; /* Center the title text */
+    /* margin-bottom: 20px;  */
+    font-family: 'Public Sans';
+    font-size: 20px;
+    color: #263238;
+    font-weight: 200;
+    margin-bottom: 10%;
+}
+
+.signup-logo {
+    width: 150px;
+    height: 50px;
+    margin-bottom: 10%;
+}
+
+.standard-login-form button{
+    margin: 5px;
+    text-align: left;
+    width: auto;
+    min-width: 300px
+}
+
+.standard-login-form #login-selector-google, 
+.standard-login-form #login-selector-email, 
+.standard-login-form #login-selector-account{
+    background-color: rgba(255, 255, 255, 0.5); 
+    color: black;
+    font-weight: 250;
+    padding-right: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.signin-col{
+    background: linear-gradient(#63BFFF 44%, #0077FF 100%);
+    /* background: linear-gradient(to bottom, #FFEA98, #46D3FF); */
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-weight: bold;
+}
+
+.button-icon {
+    height: 30px; padding-right: 7px;
+}
+
+.right-most {
+    float: right;
+    height: 30px;
+    margin-left: auto;
+}
+
+.term {
+    width: 300px;
+    text-align: center; 
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 10px;
+    margin-top: 5%;
+}

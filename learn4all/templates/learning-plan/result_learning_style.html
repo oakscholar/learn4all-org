@@ -398,19 +398,6 @@
             let currentWeek = 0; // Default to first week
             let currentDay = 'monday'; // Default to Monday
 
-            // function updateContent() {
-            //     const weekData = contextData['5-week_study_plan'][currentWeek];
-            //     const dayData = weekData[currentDay];
-                
-            //     if (dayData) {
-            //         const activities = dayData.activities.join(', ');
-            //         const resources = dayData.resources.join(', ');
-            //         weekContentDiv.innerHTML = `<strong>Activities:</strong> ${activities}<br><strong>Resources:</strong> ${resources}`;
-            //     } else {
-            //         weekContentDiv.innerHTML = 'No data available for this day.';
-            //     }
-            // }
-
             function updateContent() {
                 console.log(`Updating content for week ${currentWeek}, day ${currentDay}`);
                 const weekData = contextData['5-week_study_plan'][currentWeek];
