@@ -9,19 +9,20 @@
             <img src="../../static/L4A-logo-whiteyellow.png" class="signup-logo">
             <h4 class="card-title">Create your account to start learing</h4>
             <div class="login-buttons">
-                <button id="back-button" class="icon-button">
-                    <img src="../../static/back-to-previous-button.png" alt="Back">
-                </button>
-                <button id="login-button" class="text-button">Login</button>
+                <button id="back-button" class="icon-button"></button>
+                <!-- <button type="submit" id="login-button" class="text-button">Login</button> -->
+                <a href="{% url 'login' %}" id="login-button" class="text-button">Login</a>
             </div>
             <form method="post">
                 {% csrf_token %}
                 {{ form | crispy}}
-                <!-- <button type="submit">Submit</button> -->
+                <button type="submit">Submit</button>
             </form>
         </div>
     </div>
 </div>
+
+
 {% endblock content %}
 
 

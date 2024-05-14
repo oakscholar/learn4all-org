@@ -30,8 +30,9 @@ nav ul li a:hover {
 
 /* Main styling for the login card */
 body {
-    background-image: url("../learn4all/static/profile-bg-moon.png");
-    background-size: cover;
+    background-color: black; 
+    /* background-image: url("../learn4all/static/profile-bg-moon.png");
+    /* background-size: cover; */
     /* background-image: linear-gradient(#BBFFFF 0%, #FFC727 69%, #9163AD 100%);
     background-image: radial-gradient(#DBBE49 0%, #FFFFFF 32%, #9FDDDD 47%, #C9CAE2 68%, #A6C4D9 100%); */
 }
@@ -154,38 +155,42 @@ button:hover {
 
 .login-buttons {
     display: flex;
-    align-items: center;
-    /* justify-content: space-between; */
+    align-items: c;
+    justify-content: space-between;
     padding: 5px; 
     width: 481.13px;
-    height:auto;
+    height: 50px;
     left: 0;
+    align-items: center;
+
 }
 
 .icon-button {
-    left:0;
     border: none;
     background: none;
     cursor: pointer;
     outline: none;
+    width: 50px;
+    height: 50px;
+    background-image: url("../../static/back-to-previous-button.png");
+    background-size: contain;
 }
 
-.icon-button img {
-    width: 60px;
-    height: 60px;
-}
-
-.text-button {
+.text-button, a.text-button{
     padding: 5px 20px;
     background-image: linear-gradient(#FFFFFF 5%, #BBFFFF 100%);
     border: 2px solid #4285F4; 
     color: #4285F4;
     border-radius: 20px; 
-    font-size: 16px;
+    font-size: auto;
     cursor: pointer;
     outline: none;
     transition: background-color 0.3s, color 0.3s;
     font-weight: bold;
+    width: 100px; height: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: center; 
 }
 
 .text-button:hover {
