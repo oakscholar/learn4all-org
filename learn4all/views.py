@@ -50,6 +50,7 @@ class MyLoginView(LoginView):
             # return reverse_lazy("home") # TO-DO: Change to profile
             return reverse_lazy("describeGoal")
 
+
 def home(request):
     return render(request, 'home/home.html')
 

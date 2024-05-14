@@ -30,8 +30,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,500;1,75..100,500&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap" rel="stylesheet">
-    <!-- Code for Google Fonts -->
-  
+    <link href='https://fonts.googleapis.com/css?family=Public Sans' rel='stylesheet'>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -81,6 +81,11 @@
           background: #0e5ccd;
           margin: 0;
           height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 20px;
+          font-family: 'Open Sans', sans-serif;
         }
         
         .containerHeader {
@@ -89,21 +94,27 @@
           color: white;
           letter-spacing: 1px;
           background-color: #0e5ccd;
-          height: 300px;
+          height: auto;
           text-align: center;
-          padding: 15px 300px;
+          padding-left: 15px 300px;
           display: grid;
           grid-template-columns: 2fr 2fr 1fr;
           font-family: 'Public Sans Light', sans-serif;
           font-size: 15px;
           font-weight: 100;
           justify-content: left;
+          align-items: center;  
+          justify-content: space-between; 
+          padding: 0 15px; 
+          background-color: #0e5ccd;  
         }
         
         .form-control {
           border-radius: 30px;
           background-color: #0e5ccd;
           border-color: #ffffff;
+          min-width: 150px;  
+          width: auto;
         }
         
         .has-search .form-control ::placeholder {
@@ -126,19 +137,15 @@
           color: #ffffff;
         }
         
-        .btn-group a {
+        .btn-group, .btn-group-1 {
           text-decoration: none;
           padding: 10px;
           margin: 20px;
           color: #ffffff;
+          display: flex;
+          align-items: center;
         }
         
-        .btn-group-1 a {
-          text-decoration: none;
-          padding: 10px;
-          margin: 20px;
-          color: #ffffff;
-        }
         
         .btn-group a:hover {
           color: #efc94e;
@@ -203,6 +210,17 @@
                 padding: 20px 25px;
             }
         }
+
+        @media (max-width: 768px) {
+            .containerHeader {
+                flex-wrap: wrap; 
+            }
+            .intro, .select, .signup-header {
+                width: 100%; 
+                justify-content: center;
+                margin-top: 10px;
+            }
+        }
         
           /* <!-- Header CSS --> */
         
@@ -224,6 +242,9 @@
         
         .main-1 {
           background-color: #0e5ccd;
+          /* background-image: radial-gradient(#0D5ACF 0%, #45D2FF 71%, #FFEDA8 100%); */
+          background-image: url("../static/Rectangle\ 28.png");
+          background-size: cover;
           height: 500px;
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -473,7 +494,10 @@
         
         <!-- Student Feedback CSS --> */
         body{
-          background: #0a69ed;
+          background: white;
+          background-image: url("../static/profile-bg.png");
+          /* background-image: url("../static/blueball.png"); */
+          background-size: cover;
         }
         .testimonial_area{
           padding: 10% 0;
@@ -584,6 +608,25 @@
           margin: 0;
         }
         
+        .intro {
+          padding-left: 150px;
+          display: flex;
+          align-items: center; 
+          color: white;
+
+        }
+
+        .select, .signup-header {
+            display: flex;
+            align-items: center;
+            
+        }
+
+        .signup-header  .align-header{
+          display: flex;
+          align-items: center; 
+          justify-content: start;  
+        }
         .containerFooter {
             width: 100%;
             background-color: black;
@@ -623,6 +666,7 @@
         }
         
         .form-group input {
+          margin-bottom: 0;
           margin: 10px;
           justify-content: left;
         }
@@ -650,6 +694,7 @@
             align-items: start;
         }
         
+
 
         /* ----------------------------- MEDIA QUERY --------------------------- */
 
@@ -707,7 +752,125 @@
         }
 
         /* <!-- Footer CSS --> */
+      
 
+      /* ----------------------------- Nav Bar --------------------------- */
+      .nvg-header {
+          /* background-image: radial-gradient(#0D5ACF 0%, #45D2FF 69%, #FFEDA8 100%); */
+          background-image: url("../static/nvg-bg.png");
+          background-size: cover;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          /* padding-top: 10%;
+          padding: 20px 20px; */
+          padding-top: 10px;
+          font-family: 'Open Sans', sans-serif;
+        
+      }
+
+      .logo {
+          display: flex;
+          align-items: center;
+      }
+
+      .logo img {
+          height: 50px; 
+      }
+
+      .search-bar {
+        background-color: transparent;
+        color: #ffffff;
+        position: relative;
+        flex-grow: 1;
+        margin: 1px 10px;
+        min-width: 350px;
+      }
+
+      .search-bar input[type="text"] {
+          width: 100%;
+          padding: 5px 15px;
+          border: 1px solid #ffffff;
+          border-radius: 20px;
+          background-color: transparent;
+          color: #ffffff;
+      }
+
+      .search-bar .fa-search {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: white;
+          font-size: 20px;
+      }
+
+      .nav-links {
+          display: flex;
+          list-style: none;
+      }
+
+      .nav-links a {
+          text-decoration: none;
+          color: white;
+          margin: 0 35px;
+          /* padding: 8px 16px; */
+          transition: background-color 0.3s;
+      }
+
+      .nav-links a:hover {
+          background-color: #efc94e; /* Highlight color on hover */
+      }
+
+      .buttons {
+          display: flex;
+          padding-right: 100px;
+      }
+
+      .button {
+          background-color: #ffffff;
+          border: none;
+          border-radius: 20px;
+          padding: 8px 16px;
+          margin-left: 10px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+      }
+
+      .button.login {
+          background-color: transparent;
+          color: white;
+      }
+
+      .button.signup {
+          color: #0e5ccd;
+          background-color: linear-gradient(to right, #FFEA98, #46D3FF);
+          font-weight: bold;
+          /* -webkit-text-fill-color: transparent;
+          -webkit-background-clip: text; */
+          border: none;
+          border-radius: 20px;
+      }
+
+      .button:hover {
+          opacity: 0.9;
+      }
+
+      .horizontal {
+        padding-left: 50px;
+        display: flex;
+        align-items: center;  /* Aligns items vertically in the center */
+        justify-content: space-between;
+      }
+
+      .title-special {
+
+          background-color: linear-gradient(to right, #FFEA98, #46D3FF);
+          -webkit-text-fill-color: transparent;
+          -webkit-background-clip: text;
+
+      }
     </style>
         
 
@@ -715,71 +878,32 @@
 </head>
 
 <body>
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <a class="navbar-brand" href="#">Learn4All</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'plan' %}">Plan</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'signup' %}">Signup</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav> -->
-    <header>
-      <section>
-        <div class="containerHeader">
-          <div class="intro">
-            <link rel="icon" type="image/x-icon" href="learn4all.jpg" />
-            <div class="form-group has-search">
-              <span class="fa fa-search form-control-feedback"></span>
-              <input type="text" class="form-control" placeholder="What do you want to learn">
-            </div>
-            </form>
-          </div>
-          <div class="select">
-            <div class="btn-group">
-              <a href="{% url 'home' %}">Home</a>
-              <a href="{% url 'about' %}">About</a>
-              <a href="{% url 'plan' %}">Plan</a>
-              <a href="{% url 'contact' %}">Contact</a>
-            </div>
-          </div>
-          <div class="signup-header">
-            <div class="btn-group-1">
-                {% if user.is_authenticated %}
-                  <form herf="{% url 'logout' %}" method="post">
-                    {% csrf_token %}
-                    <a href="{% url 'logout' %}">Logout</a>
-                {% else %}
-                  <a href="{% url 'login' %}">Login</a>
-                {% endif %}
-                <a href="{% url 'signup' %}">Signup</a>
-                </form>
-            </div>
-          </div>
-        </div>
-    </section>
-  </header>
+  <header class="nvg-header">
+    <div class="horizontal">
+      <div class="logo">
+        <a href="{% url 'home' %}">
+          <img src="../../static/L4A-logo-white.png" alt="Learn4AllLogo">
+        </a>
+      </div>
+      <div class="search-bar">
+          <i class="fa fa-search"></i>
+          <input type="text" placeholder="What do you want to learn">
+      </div>
+    </div>
+    
+    <div class="nav-links">
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'plan' %}">Plan</a>
+      <a href="{% url 'contact' %}">Contact</a>
+    </div>
+
+    <div class="buttons">
+      <a class="button login" href="{% url 'login' %}">Login</a>
+      <a class="button signup" href="{% url 'signup' %}">Sign Up</a> 
+    </div>
+</header>
+
     {% block content %}
     {% endblock %}
 

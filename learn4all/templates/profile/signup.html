@@ -2,9 +2,17 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="card m-2 w-25">
+<link rel="stylesheet" href="../static/styles.css">
+<div class="content">
+    <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Sign Up</h4>
+            <img src="../../static/L4A-logo-whiteyellow.png" class="signup-logo">
+            <h4 class="card-title">Create your account to start learing</h4>
+            <div class="login-buttons">
+                <button id="back-button" class="icon-button"></button>
+                <!-- <button type="submit" id="login-button" class="text-button">Login</button> -->
+                <a href="{% url 'login' %}" id="login-button" class="text-button">Login</a>
+            </div>
             <form method="post">
                 {% csrf_token %}
                 {{ form | crispy}}
@@ -12,6 +20,9 @@
             </form>
         </div>
     </div>
+</div>
+
+
 {% endblock content %}
 
 
