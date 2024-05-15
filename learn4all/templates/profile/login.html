@@ -3,12 +3,21 @@
 
 {% block content %}
 <link rel="stylesheet" href="../static/styles.css">
-<div class="content">
+<div class="content-profile">
     <div class="card">
         <div class="card-body">
             <img src="../../static/L4A-logo-whiteyellow.png" class="signup-logo">
             <h4 class="card-title">Unlock your learning plans @ Learn4all</h4>
-            <div class="standard-login-form">
+
+            <!-- <div id="login-failed-popup" class="popup" style="display:none;">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup()">&times;</span>
+                    <p>Login failed. Please check your username and password.</p>
+                </div>
+            </div> -->
+
+            
+            <div class="standard-login-form consistent-width">
                 <button onclick="showGoogleLogin()" id="login-selector-google">
                     <img src="../../static/google-icon.png" alt="Google" class="button-icon">Continue with Google
                     <img src="../../static/login-icon-1.png"class="right-most">
@@ -22,32 +31,35 @@
 
                 <button onclick="showAccountLogin()" id="login-selector-account">
                     <img src="../../static/login-icon.png" class="button-icon">Already have account?
-                    <span class="signin-col">Sign In</span>
+                    <span class="signin-col"> Sign In</span>
                     <img src="../../static/login-icon-3.png"class="right-most">
                 </button>     
             </div>
             
 
-            <div id="email-login-form" style="display:none;">
-                <form method="post">
+            <div id="email-login-form" style="display:block;">
+                <form method="post" class="consistent-width">
                     {% csrf_token %}
-                    {{ form|crispy }}
+                    {{ email_form|crispy }}
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
             </div>
 
             <div id="standard-login-form" style="display:none;">
-                <form method="post">
+                <form method="post" class="consistent-width">
                     {% csrf_token %}
-                    {{ form|crispy }}
+                    {{ username_form|crispy }}
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
             </div>
 
             <p class="term">By continuing, you agree to Learn4All’s Terms of Service, Privacy Policy and Data Usage Properties</p>
+
         </div>
     </div>
 </div>
+
+
 
 <script>
     function showGoogleLogin() {
@@ -70,5 +82,6 @@
         document.getElementById('google-login-form').style.display = 'none';
         
     }
-    </script>
+
+</script>
 {% endblock content %}

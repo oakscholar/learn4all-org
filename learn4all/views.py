@@ -40,16 +40,68 @@ class SignUpView(CreateView):
             login(self.request, user)
         return response
 
+
 class MyLoginView(LoginView):
     template_name = "profile/login.html"
     redirect_authenticated_user = True
+
     def get_success_url(self):
         if self.request.user.is_staff or self.request.user.is_superuser:
-            return reverse_lazy("admin:index") # Changed if needed
+            return reverse_lazy("admin:index")
         else:
-            # return reverse_lazy("home") # TO-DO: Change to profile
             return reverse_lazy("describeGoal")
 
+    def post(self, request, *args, **kwargs):
+        login_failed = False
+        email_form = EmailLoginForm(request.POST)
+        username_form = UsernameLoginForm(data=request.POST)
+
+        if 'email' in request.POST:
+            print("Email form submitted")
+            if email_form.is_valid():
+                email = email_form.cleaned_data['email']
+                password = email_form.cleaned_data['password']
+                print(f"Email: {email}, Password: {password}")
+                user = authenticate(request, email=email, password=password)
+                print(f"Authenticated user: {user}")
+                if user is not None:
+                    login(request, user)
+                    return redirect(self.get_success_url()) 
+                else:
+                    login_failed = True
+                    email_form.add_error(None, "Invalid email or password")
+                    print("Invalid email or password")
+            else:
+                print("Email form is invalid")
+                print(email_form.errors)
+        else:
+            print("Username form submitted")
+            if username_form.is_valid():
+                user = username_form.get_user() 
+                login(request, user)
+                return self.form_valid(username_form, user)
+            else:
+                login_failed = True
+                username_form.add_error(None, "Invalid username or password")
+                print("Invalid username or password")
+                print(username_form.errors)
+
+        return render(request, 'profile/login.html', {
+                    'email_form': email_form,
+                    'username_form': username_form,
+                    'login_failed': login_failed,
+                })
+    
+    def form_valid(self, form, user):
+        login(self.request, form.get_user())
+        return redirect(self.get_success_url())  
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['email_form'] = EmailLoginForm()
+        context['username_form'] = UsernameLoginForm()
+        return context
+    
 
 def home(request):
     return render(request, 'home/home.html')
