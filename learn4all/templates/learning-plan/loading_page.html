@@ -14,10 +14,31 @@
   rel="stylesheet">
 
   <style type="text/css">
-    html {
-      background-image: radial-gradient(circle at center, #45D2FF, #FFFFFF);
+    body {
+      background: linear-gradient(290deg, #E9DEBF, #99D0E3, #EAC2CF);
       opacity: 0.5;
-    }
+      background-size: 600% 600%;
+  
+      -webkit-animation: background-shades 15s ease-in-out infinite;
+      -moz-animation: background-shades 15s ease-in-out infinite;
+      animation: background-shades 15s ease-in-out infinite;
+  }
+  
+  @-webkit-keyframes background-shades {
+      0% {background-position: 30% 0%}
+      50% {background-position: 71% 100%}
+      100% {background-position: 30% 0%}
+  }
+  @-moz-keyframes background-shades {
+      0% {background-position: 30% 0%}
+      50% {background-position: 71% 100%}
+      100% {background-position: 30% 0%}
+  }
+  @keyframes background-shades {
+      0% {background-position: 30% 0%}
+      50% {background-position: 71% 100%}
+      100% {background-position: 30% 0%}
+  }
 
     .loading {
       position: absolute;
@@ -27,12 +48,39 @@
       padding: 10px;
       font-family: "Public Sans", sans-serif;
     }
+
+    span {
+      font-size: 35px;
+      color: #090c0d;}
+      /* adding blur animation effect on each character of loading text one by one */
+      span:nth-child(1){animation: blur-text 4s ease-in-out infinite;}
+      span:nth-child(2){animation: blur-text 4s ease-in-out infinite 0.3s;}
+      span:nth-child(3){animation: blur-text 4s ease-in-out infinite 0.5s;}
+      span:nth-child(4){animation: blur-text 4s ease-in-out infinite 0.9s;}
+      span:nth-child(5){animation: blur-text 4s ease-in-out infinite 1.3s;}
+
+      @keyframes blur-text {
+         0% {filter: blur(0px);}
+         50% {filter: blur(4px);}
+         100% {filter: blur(0px);}
+      }
+
 </style>
 </head>
 <body>
   <div class="loading">
-    <h1>Generating your Presentation Preparing ...</h3>
+    <div class="loading-text">
+      <span class="loading-text-words">Generating&nbsp;</span>
+		  <span class="loading-text-words">your&nbsp;</span>
+		  <span class="loading-text-words">Presentation&nbsp;</span>
+		  <span class="loading-text-words">Preparing&nbsp;</span>
+      <span class="loading-text-words">...&nbsp;</span>
+    </div>
   </div>
 </body>
+
+<script>
+  
+</script>
 </html>
 

@@ -287,7 +287,9 @@
       }
     })
     .then(data => {
-      window.location.href = `/result_learning_style/${data.user_id}/`; 
+      console.log('Success:', data);
+      // window.location.href = `/result_learning_style/${data.user_id}/`; 
+      window.location.href = "{% url 'loadingPage' %}";
     })
     .catch(error => console.error('Failed to save choice:', error));
   }

@@ -29,9 +29,9 @@ nav ul li a:hover {
 
 
 /* Main styling for the login card */
-body {
-    background-color: black; 
-    /* background-image: url("../learn4all/static/profile-bg-moon.png");
+.content {
+    background-color: black;
+    /* background-image: url("../learn4all/static/profile-bg-moon.png"); */
     /* background-size: cover; */
     /* background-image: linear-gradient(#BBFFFF 0%, #FFC727 69%, #9163AD 100%);
     background-image: radial-gradient(#DBBE49 0%, #FFFFFF 32%, #9FDDDD 47%, #C9CAE2 68%, #A6C4D9 100%); */
