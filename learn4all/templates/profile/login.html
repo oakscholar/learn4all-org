@@ -3,25 +3,29 @@
 
 {% block content %}
 <link rel="stylesheet" href="../static/styles.css">
-<div class="content-profile">
+<div class="content">
     <div class="card">
         <div class="card-body">
             <img src="../../static/L4A-logo-whiteyellow.png" class="signup-logo">
             <h4 class="card-title">Unlock your learning plans @ Learn4all</h4>
-
-            <!-- <div id="login-failed-popup" class="popup" style="display:none;">
-                <div class="popup-content">
-                    <span class="close" onclick="closePopup()">&times;</span>
-                    <p>Login failed. Please check your username and password.</p>
+            
+            <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+            <!-- <div class="g-signin2" data-width="300" data-longtitle="true"></div> -->
+            <!-- <div class='standard-login-form' id="gSignInWrapper">
+                <div id="customBtn" class="customGPlusSignIn">
+                <div id="login-selector-google" class="customGPlusSignIn">
+                  <span class="icon"></span>
+                  <span class="button-icon">Continue with Google</span>
+                  <img src="../../static/login-icon-1.png"class="right-most">
                 </div>
             </div> -->
-
-            
-            <div class="standard-login-form consistent-width">
-                <button onclick="showGoogleLogin()" id="login-selector-google">
+              
+            <div class="standard-login-form">
+                <button class="g-signin2" id="login-selector-google" data-width="300" data-longtitle="true"></button>
+                <!-- <button onclick="showGoogleLogin()" id="login-selector-google">
                     <img src="../../static/google-icon.png" alt="Google" class="button-icon">Continue with Google
                     <img src="../../static/login-icon-1.png"class="right-most">
-                </button>
+                </button> -->
                 
                 
                 <button onclick="showEmailLogin()" id="login-selector-email">
@@ -31,35 +35,32 @@
 
                 <button onclick="showAccountLogin()" id="login-selector-account">
                     <img src="../../static/login-icon.png" class="button-icon">Already have account?
-                    <span class="signin-col"> Sign In</span>
+                    <span class="signin-col">Sign In</span>
                     <img src="../../static/login-icon-3.png"class="right-most">
                 </button>     
             </div>
             
 
-            <div id="email-login-form" style="display:block;">
-                <form method="post" class="consistent-width">
+            <div id="email-login-form" style="display:none;">
+                <form method="post">
                     {% csrf_token %}
-                    {{ email_form|crispy }}
+                    {{ form|crispy }}
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
             </div>
 
             <div id="standard-login-form" style="display:none;">
-                <form method="post" class="consistent-width">
+                <form method="post">
                     {% csrf_token %}
-                    {{ username_form|crispy }}
+                    {{ form|crispy }}
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
             </div>
 
             <p class="term">By continuing, you agree to Learn4All’s Terms of Service, Privacy Policy and Data Usage Properties</p>
-
         </div>
     </div>
 </div>
-
-
 
 <script>
     function showGoogleLogin() {
@@ -83,5 +84,68 @@
         
     }
 
-</script>
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    }
+    </script>
+
+    <!-- <a href="#" onclick="signOut();">Sign out</a> -->
+    <script>
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+        console.log('User signed out.');
+        });
+    }
+
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+
+    function onFailure(error) {
+      console.log(error);
+    }
+
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+
+
+    var googleUser = {};
+    var startApp = function() {
+        gapi.load('auth2', function(){
+        // Retrieve the singleton for the GoogleAuth library and set up the client.
+        auth2 = gapi.auth2.init({
+            client_id: '61903290050-po3hs2vbjku9auqro1mhdtdjhpacvtt6.apps.googleusercontent.com',
+            cookiepolicy: 'single_host_origin',
+            // Request scopes in addition to 'profile' and 'email'
+            //scope: 'additional_scope'
+        });
+        attachSignin(document.getElementById('customBtn'));
+        });
+    };
+
+    function attachSignin(element) {
+        console.log(element.id);
+        auth2.attachClickHandler(element, {},
+            function(googleUser) {
+            document.getElementById('name').innerText = "Signed in: " +
+                googleUser.getBasicProfile().getName();
+            }, function(error) {
+            alert(JSON.stringify(error, undefined, 2));
+            });
+    }
+    </script>
 {% endblock content %}

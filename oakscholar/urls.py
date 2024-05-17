@@ -47,5 +47,6 @@ urlpatterns = [
     path('result_learning_style/<int:user_id>/', views.GenerateStudyPlanView.as_view(), name='resultLearningStyle'),
     re_path(r'^result_learning_style/(.*)$', TemplateView.as_view(template_name='index.html')),
 
+    path('accounts/', include('allauth.urls')),
     
 ]
