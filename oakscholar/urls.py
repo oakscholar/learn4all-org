@@ -49,5 +49,6 @@ urlpatterns = [
     
     path('loading_page/', views.LoadingPageView.as_view(), name='loadingPage'),
 
+    path('accounts/', include('allauth.urls')),
     
 ]

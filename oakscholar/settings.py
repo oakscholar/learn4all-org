@@ -37,9 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'learn4all',
     'crispy_forms',
     'crispy_bootstrap5',
+    'django_extensions',
+    
+    # Allauth apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',  # Google provider
+    
 
 ]
 
@@ -51,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'oakscholar.urls'
@@ -143,4 +153,39 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'learn4all.backends.EmailBackend',    
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
+]
+
+
+# Google SIGN-IN
+SITE_ID = 4
+SOCIALACCOUNT_GOOGLE_CLIENT_ID = '61903290050-po3hs2vbjku9auqro1mhdtdjhpacvtt6.apps.googleusercontent.com'
+SOCIALACCOUNT_GOOGLE_CLIENT_SECRET = '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'
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'CLIENT_ID': SOCIALACCOUNT_GOOGLE_CLIENT_ID,
+        'SECRET': SOCIALACCOUNT_GOOGLE_CLIENT_SECRET,
+    }
+}
+
+
+
+# Allauth settings
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_UNIQUE_EMAIL = True
 

@@ -2,26 +2,18 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign up Page</title>
-    <link rel="stylesheet" href="../../../static/styles.css">
-</head>
-<body>
-    <div class="content">
-        <div class="card">
-            <div class="card-body">
-                <img src="../../static/L4A-logo-whiteyellow.png" class="signup-logo">
-                <h4 class="card-title">Create your account to start learing</h4>
-                <div class="login-buttons">
-                    <button id="back-button" class="icon-button"></button>
-                    <!-- <button type="submit" id="login-button" class="text-button">Login</button> -->
+<link rel="stylesheet" href="../static/styles.css">
+<div class="content-profile">
+    <div class="card">
+        <div class="card-body">
+            <img src="../../static/L4A-logo-whiteyellow.png" class="signup-logo">
+            <h4 class="card-title">Create your account to start learing</h4>
+            <div class="signup-info">
+                <div class="login-buttons consistent-width">
+                    <button id="back-button" class="icon-button" onclick="goBack()"></button>
                     <a href="{% url 'login' %}" id="login-button" class="text-button">Login</a>
                 </div>
-                <form method="post">
+                <form method="post" class="form-v consistent-width">
                     {% csrf_token %}
                     {{ form | crispy}}
                     <button type="submit">Submit</button>
@@ -34,5 +26,10 @@
 
 
 
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 
 {% endblock content %}

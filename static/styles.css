@@ -27,43 +27,55 @@ nav ul li a:hover {
 
 
 
-
-/* Main styling for the login card */
-.content {
-    background-color: black;
-    /* background-image: url("../learn4all/static/profile-bg-moon.png"); */
-    /* background-size: cover; */
-    /* background-image: linear-gradient(#BBFFFF 0%, #FFC727 69%, #9163AD 100%);
-    background-image: radial-gradient(#DBBE49 0%, #FFFFFF 32%, #9FDDDD 47%, #C9CAE2 68%, #A6C4D9 100%); */
+body {
+    background-color: #0077FF;
+    background-image: url('../../static/profile-bg-moon.png'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+    margin: 0;
 }
 
+/* Main styling for the login card */
 .card {
     min-width: 400px; 
     width:auto;
     top: 15%; 
     right: 10%;
-    /* height: 500px; */
     height: auto;
     background-color: #e7effa;
-    background-image: url("../learn4all/static/signin-bg.png");
+    background-image: url("../../static/signin-bg.png");
+    background-size:cover;
+    background-repeat: no-repeat;
     /* background: radial-gradient(#FFC727 0%, #45D3FF 32%, #0D5ACF 100%); */
     /* background-blend-mode: overlay; */
     border-radius: 10px; 
-    border-color: #2a72de;
+    /* border-color: #2a72de; */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     position: absolute;
+    margin-top: 10%; 
     /* font-family: 'Poppins', sans-serif; */
 }
 
 /* Styling the form elements */
-input[type="email"], input[type="text"], input[type="password"] {
+input[type="email"], input[type="text"], input[type="password"]{
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+.consistent-width {
+    width: 300px; 
+    max-width: 100%; 
+}
+
 
 button {
     width: 100%;
@@ -122,13 +134,14 @@ button:hover {
 .standard-login-form button{
     margin: 5px;
     text-align: left;
-    width: auto;
-    min-width: 300px
+    /* width: auto; */
+    width: 300px
 }
 
 .standard-login-form #login-selector-google, 
 .standard-login-form #login-selector-email, 
-.standard-login-form #login-selector-account{
+.standard-login-form #login-selector-account,
+.form-control, .g-signin2 {
     background-color: rgba(255, 255, 255, 0.5); 
     color: black;
     font-weight: 250;
@@ -158,11 +171,15 @@ button:hover {
     align-items: c;
     justify-content: space-between;
     padding: 5px; 
-    width: 481.13px;
     height: 50px;
     left: 0;
     align-items: center;
 
+}
+
+.signup-info {
+    /* min-width: 400px; */
+    width:auto;
 }
 
 .icon-button {
@@ -216,3 +233,47 @@ button:hover {
     font-size: 10px;
     margin-top: 5%;
 }
+
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+
+
+/* Google Login API */
+#customBtn {
+    display: inline-block;
+    background: white;
+    color: #444;
+    /* width: 190px; */
+    border-radius: 5px;
+    border: thin solid #888;
+    box-shadow: 1px 1px 1px grey;
+    white-space: nowrap;
+  }
+  #customBtn:hover {
+    cursor: pointer;
+  }
+  span.label {
+    font-family: serif;
+    font-weight: normal;
+  }
+  span.icon {
+    background: url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    width: 42px;
+    height: 42px;
+  }
+  span.buttonText {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+  }

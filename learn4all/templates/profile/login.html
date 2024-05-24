@@ -8,11 +8,24 @@
         <div class="card-body">
             <img src="../../static/L4A-logo-whiteyellow.png" class="signup-logo">
             <h4 class="card-title">Unlock your learning plans @ Learn4all</h4>
+            
+            <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+            <!-- <div class="g-signin2" data-width="300" data-longtitle="true"></div> -->
+            <!-- <div class='standard-login-form' id="gSignInWrapper">
+                <div id="customBtn" class="customGPlusSignIn">
+                <div id="login-selector-google" class="customGPlusSignIn">
+                  <span class="icon"></span>
+                  <span class="button-icon">Continue with Google</span>
+                  <img src="../../static/login-icon-1.png"class="right-most">
+                </div>
+            </div> -->
+              
             <div class="standard-login-form">
-                <button onclick="showGoogleLogin()" id="login-selector-google">
+                <button class="g-signin2" id="login-selector-google" data-width="300" data-longtitle="true"></button>
+                <!-- <button onclick="showGoogleLogin()" id="login-selector-google">
                     <img src="../../static/google-icon.png" alt="Google" class="button-icon">Continue with Google
                     <img src="../../static/login-icon-1.png"class="right-most">
-                </button>
+                </button> -->
                 
                 
                 <button onclick="showEmailLogin()" id="login-selector-email">
@@ -69,6 +82,70 @@
         document.getElementById('email-login-form').style.display = 'none';
         document.getElementById('google-login-form').style.display = 'none';
         
+    }
+
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    }
+    </script>
+
+    <!-- <a href="#" onclick="signOut();">Sign out</a> -->
+    <script>
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+        console.log('User signed out.');
+        });
+    }
+
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+
+    function onFailure(error) {
+      console.log(error);
+    }
+
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+
+
+    var googleUser = {};
+    var startApp = function() {
+        gapi.load('auth2', function(){
+        // Retrieve the singleton for the GoogleAuth library and set up the client.
+        auth2 = gapi.auth2.init({
+            client_id: '61903290050-po3hs2vbjku9auqro1mhdtdjhpacvtt6.apps.googleusercontent.com',
+            cookiepolicy: 'single_host_origin',
+            // Request scopes in addition to 'profile' and 'email'
+            //scope: 'additional_scope'
+        });
+        attachSignin(document.getElementById('customBtn'));
+        });
+    };
+
+    function attachSignin(element) {
+        console.log(element.id);
+        auth2.attachClickHandler(element, {},
+            function(googleUser) {
+            document.getElementById('name').innerText = "Signed in: " +
+                googleUser.getBasicProfile().getName();
+            }, function(error) {
+            alert(JSON.stringify(error, undefined, 2));
+            });
     }
     </script>
 {% endblock content %}
