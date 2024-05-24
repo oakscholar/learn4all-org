@@ -62,6 +62,10 @@ def update_profile(request):
     # TO-DO: both logic and html
     return render(request, 'profile_update.html')
 
+def choose_time_commitment(request):
+    # TO-DO: choose time commitment
+    return render(request, 'learning-plan/choose_time_commitment.html')
+
 def loading_page(request):
     # TO-DO: loading page
     return render(request, 'learning-plan/loading_page.html')
@@ -122,6 +126,7 @@ class EvaluateLearningStyleView(LoginRequiredMixin,FormView):
 def get_user_profile(request, user_id):
     profile = get_object_or_404(Profile, user_id=user_id)
     return profile
+
 
 # Loading_page
 class LoadingPageView(LoginRequiredMixin,FormView):

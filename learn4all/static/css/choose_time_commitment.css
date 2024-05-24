@@ -1,0 +1,90 @@
+body {
+  background: linear-gradient(to bottom right, #f4f3e0, #FFFFFF, #c4d8f0);
+  background-size: 100vw 100vh;
+}
+
+#choose-time-commitment {
+display: grid;
+width: 80%;
+grid-template-columns: 1fr 1fr;
+margin: 0 auto; /* Center in the viewport */
+justify-content: center;
+}
+
+.choice-title {
+display: block;
+text-align: center;
+margin: 30px;
+padding: 30px;
+color: #0D5ACF;
+}
+
+.choice-title h1 {
+font-family: "Urbanist", sans-serif;
+font-weight: 800;
+}
+
+.make-choice {
+margin: 30px;
+padding: 50px;
+border-radius: 30px;
+}
+
+.result-bar {
+background-color: #0D5ACF;
+font-family: "Open Sans", sans-serif;
+font-size: 1.2rem;
+color: #FFFFFF;
+text-align: center;
+margin: 40px;
+padding: 100px;
+border-radius: 20px;
+}
+
+.result-bar p {
+  font-family: "Urbanist", sans-serif;
+  font-weight: 300;
+}
+
+.make-choice {
+background: linear-gradient(to bottom right, #f4f3e0, #FFFFFF, #c4d8f0);
+font-family: "Open Sans", sans-serif;
+font-weight: 400;
+}
+
+.choice {
+margin: 20px;
+padding: 40px;
+}
+
+#form-range-1, #form-range-2 {
+width: 100%;
+height: .5rem;
+}
+
+datalist {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+#number-of-hours-per-week, .hours-per-week-font {
+  font-family: "Urbanist", sans-serif;
+  font-weight: 900;
+  font-size: 2rem;
+}
+
+#number-of-week, .week-font {
+  font-family: "Urbanist", sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.start-building-button {
+text-align: center;
+}
+
+.button-custom {
+color: #0D5ACF;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../static/css/choose_time_commitment.css">
+
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  crossorigin="anonymous"
+  />
+
+  <!--  Google Fonts CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Google Fonts CSS - Urbanist Font -->
+  <link
+  href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+  rel="stylesheet"
+  />
+  <!-- Google Fonts CSS - Public Sans Font -->
+  <link
+  href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Urbanist:ital,wght@0,700;1,700&display=swap"
+  rel="stylesheet"
+  />
+  <!--  Google Fonts CSS - Open Sans Hebrew -->
+  <link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+  rel="stylesheet"
+  />
+  <title>Choose Time Commitment</title>
+</head>
+
+<body>
+  <div class="choice-title">
+    <h1>Choose Your Time Commitment</h1>
+  </div>
+  <div id="choose-time-commitment">
+    <div class="make-choice">
+      <div class="choice-options">
+        <div class="choice">
+          <h4>How many weeks do you plan to achieve your goal?</h3>
+          <label for="customRange3" class="form-label"></label>
+          <input type="range" id="form-range-1" min="0" max="20" steps="5" id="customRange3">
+          <datalist>
+            <option value="1" label="1 Week"></option>
+            <option value="5" label="5 Weeks"></option>
+            <option value="10" label="10 Weeks"></option>
+            <option value="15" label="15 Weeks"></option>
+            <option value="20" label="20 Weeks"></option>
+          </datalist>
+        </div>
+        <div class="choice">
+          <h4>How many hours per week on average can you dedicate to this goal?</h3>
+          <label for="customRange3" class="form-label"></label>
+          <input type="range" id="form-range-2" min="0" max="40" steps="10" id="customRange3">
+          <datalist>
+            <option value="1" label="1 hour"></option>
+            <option value="10" label="10 Hours"></option>
+            <option value="20" label="20 Hours"></option>
+            <option value="30" label="30 Hours"></option>
+            <option value="40" label="40 Hours"></option>
+          </datalist>
+        </div>
+      </div>
+    </div>
+      
+    <div class="get-result">
+        <div class="result-bar">
+          <p>You're going to contribute</p>
+          <span id="number-of-hours-per-week">&nbsp;</span>
+          <span class="hours-per-week-font">Hours / Week</span>
+          <p>to complete your goal in <span id="number-of-week"></span><span class="week-font">&nbsp;Weeks</span></p>
+        </div>
+        <div class="start-building-button">
+          <button type="button" class="btn btn-outline-primary rounded-pill">Start Building</button>
+        </div>
+    </div>
+  </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="../../static/js/choose_time_commitment.js"></script>
+
+</body>
+
+</html>
