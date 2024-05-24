@@ -114,7 +114,9 @@ def update_profile(request):
     # TO-DO: both logic and html
     return render(request, 'profile_update.html')
 
-
+def loading_page(request):
+    # TO-DO: loading page
+    return render(request, 'learning-plan/loading_page.html')
 
 
 class DescribeGoalView(LoginRequiredMixin,FormView):
@@ -172,6 +174,30 @@ class EvaluateLearningStyleView(LoginRequiredMixin,FormView):
 def get_user_profile(request, user_id):
     profile = get_object_or_404(Profile, user_id=user_id)
     return profile
+
+# Loading_page
+class LoadingPageView(LoginRequiredMixin,FormView):
+    template_name = 'learning-plan/loading_page.html'
+    form_class = GoalForm
+    success_url = reverse_lazy('loadingPage')  
+    login_url = '/login/'
+
+    def form_valid(self, form):
+        profile = form.save(commit=False)
+        profile.user = self.request.user
+        profile.save()
+        return super(DescribeGoalView, self).form_valid(form)
+    
+    def post(self, request, *args, **kwargs):
+        data = json.loads(request.body)
+        goal = data.get('goal')
+        if request.user.is_authenticated:
+            Profile.objects.update_or_create(
+                user=request.user,
+                defaults={'goal': goal}
+            )
+            return JsonResponse({'status': 'success', 'message': 'Goal updated'})
+        return JsonResponse({'status': 'error', 'message': 'User not authenticated'}, status=401)
 
 
 def create_prompt(profile): #Provide valid JSON output. 
