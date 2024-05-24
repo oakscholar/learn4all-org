@@ -39,7 +39,7 @@ urlpatterns = [
 
 
     # Features
-    path('schedule-interview/', views.schedule_interview, name='schedule'),
+    # path('schedule-interview/', views.schedule_interview, name='schedule'),
 
     # Learning Plan 
     path('describe_goal/', views.DescribeGoalView.as_view(), name='describeGoal'),
@@ -48,7 +48,12 @@ urlpatterns = [
     re_path(r'^result_learning_style/(.*)$', TemplateView.as_view(template_name='index.html')),
     
     path('loading_page/', views.LoadingPageView.as_view(), name='loadingPage'),
+    path('time_commitment/', views.TimeCommitmentView.as_view(), name='timeCommitment'),
 
+    # Helper functions
+    path('get_learning_weeks/', views.get_learning_weeks, name='get_learning_weeks'),
+    path('check_learning_result/', views.check_learning_result, name='check_learning_result'),
+    
     path('accounts/', include('allauth.urls')),
     
 ]

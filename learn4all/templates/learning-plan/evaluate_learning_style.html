@@ -289,7 +289,8 @@
     .then(data => {
       console.log('Success:', data);
       // window.location.href = `/result_learning_style/${data.user_id}/`; 
-      window.location.href = "{% url 'loadingPage' %}";
+      // window.location.href = "{% url 'loadingPage' %}";
+      window.location.href = "{% url 'timeCommitment' %}";
     })
     .catch(error => console.error('Failed to save choice:', error));
   }

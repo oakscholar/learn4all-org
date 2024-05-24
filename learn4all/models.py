@@ -39,6 +39,9 @@ class Profile(models.Model):
     goal = models.TextField(blank=True, null=True) 
     skill = models.CharField(blank=True, null=True, max_length=255)
     learning_style = models.CharField(blank=True, null=True, max_length=100)
+    learning_wks = models.IntegerField(blank=True, null=True)
+    learning_hrs_per_wk = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+
 
     def __str__(self):
         return f"Interview on {self.date.strftime('%Y-%m-%d')} for {self.user.username}"
@@ -55,3 +58,11 @@ def create_profile(sender, instance, created, **kwargs):
     else:
         instance.profile.save()
 
+
+class LearningResult(models.Model):
+    profile = models.OneToOneField('Profile', on_delete=models.CASCADE, related_name='learning_result')
+    general_wk_result = models.JSONField()
+    detail_result = models.JSONField(null=True, blank=True)
+
+    def __str__(self):
+        return f"Learning Result for {self.profile.user.username}"

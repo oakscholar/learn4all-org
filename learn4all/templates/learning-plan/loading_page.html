@@ -80,7 +80,12 @@
 </body>
 
 <script>
-  
+  var user_id = { user_id };
+  console.log('userid:', user_id);
+  document.addEventListener('DOMContentLoaded', function() {
+    window.location.href = `/result_learning_style/${user_id}/`;
+  });
 </script>
+
 </html>
 

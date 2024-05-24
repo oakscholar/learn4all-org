@@ -75,7 +75,7 @@
           <p>to complete your goal in <span id="number-of-week"></span><span class="week-font">&nbsp;Weeks</span></p>
         </div>
         <div class="start-building-button">
-          <button type="button" class="btn btn-outline-primary rounded-pill">Start Building</button>
+          <button type="button" class="btn btn-outline-primary rounded-pill" onclick="submitChoice()">Start Building</button>
         </div>
     </div>
   </div>
@@ -84,5 +84,57 @@
   <script type="text/javascript" src="../../static/js/choose_time_commitment.js"></script>
 
 </body>
+
+<script>
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  function submitChoice() {
+    const weeks = document.getElementById('form-range-1').value;
+    const hoursPerWeek = document.getElementById('form-range-2').value;
+
+    console.log('weeks: ', weeks, ', hrs/wk: ', hoursPerWeek);
+
+    if (weeks != 0 && hoursPerWeek != 0) {
+      fetch('{% url "timeCommitment" %}', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken'),  
+        },
+        body: JSON.stringify({ learning_wks: weeks, learning_hrs_per_wk: hoursPerWeek })
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Something went wrong on server side.');
+        }
+      })
+      .then(data => {
+        if (data.status === 'success') {
+          window.location.href = "{% url 'loadingPage' %}";
+        } else {
+          alert('Failed to update profile: ' + data.message);
+        }
+      })
+      .catch(error => console.error('Failed to save choice:', error));
+    } else {
+      alert('Please provide input for both weeks and hours per week.');
+    }
+  }
+</script>
 
 </html>

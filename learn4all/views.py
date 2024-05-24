@@ -12,6 +12,7 @@ from django.shortcuts import render
 from .models import Profile
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
+from django.views.generic import TemplateView
 import openai, os, sys, json, re
 from django.views import View
 from django.conf import settings
@@ -106,21 +107,10 @@ class MyLoginView(LoginView):
 def home(request):
     return render(request, 'home/home.html')
 
-def schedule_interview(request):
-    # TO-DO: DB logic inside
-    return render(request, 'schedule_interview.html')
 
 def update_profile(request):
     # TO-DO: both logic and html
     return render(request, 'profile_update.html')
-
-def choose_time_commitment(request):
-    # TO-DO: choose time commitment
-    return render(request, 'learning-plan/choose_time_commitment.html')
-
-def loading_page(request):
-    # TO-DO: loading page
-    return render(request, 'learning-plan/loading_page.html')
 
 
 class DescribeGoalView(LoginRequiredMixin,FormView):
@@ -174,24 +164,53 @@ class EvaluateLearningStyleView(LoginRequiredMixin,FormView):
         else:
             return JsonResponse({'status': 'error', 'message': 'User not authenticated'}, status=401)
 
-    
-def get_user_profile(request, user_id):
-    profile = get_object_or_404(Profile, user_id=user_id)
-    return profile
-
-
-# Loading_page
-class LoadingPageView(LoginRequiredMixin,FormView):
-    template_name = 'learning-plan/loading_page.html'
-    form_class = GoalForm
-    success_url = reverse_lazy('loadingPage')  
+  
+class TimeCommitmentView(LoginRequiredMixin, FormView):
+    template_name = 'learning-plan/choose_time_commitment.html'
+    form_class = TimeCommitmentForm
+    success_url = reverse_lazy('loadingPage')
     login_url = '/login/'
 
     def form_valid(self, form):
         profile = form.save(commit=False)
         profile.user = self.request.user
         profile.save()
-        return super(DescribeGoalView, self).form_valid(form)
+        return super().form_valid(form)
+    
+    def post(self, request, *args, **kwargs):
+        data = json.loads(request.body)
+        learning_wks = data.get('learning_wks')
+        learning_hrs_per_wk = data.get('learning_hrs_per_wk')
+        user = request.user
+
+        if user.is_authenticated:
+            profile, created = Profile.objects.update_or_create(
+                user=user,
+                defaults={'learning_wks': learning_wks, 'learning_hrs_per_wk': learning_hrs_per_wk}
+            )
+            print("1", learning_hrs_per_wk,learning_wks)
+            return JsonResponse({'status': 'success', 'message': 'Profile updated', 'user_id': user.id})
+        else:
+            return JsonResponse({'status': 'error', 'message': 'User not authenticated'}, status=401)
+        
+
+
+def get_user_profile(request, user_id):
+    profile = get_object_or_404(Profile, user_id=user_id)
+    return profile
+
+
+# Loading_page
+class LoadingPageView(LoginRequiredMixin,TemplateView):
+    template_name = 'learning-plan/loading_page.html'
+    success_url = reverse_lazy('resultLearningStyle')  
+    login_url = '/login/'
+
+    def form_valid(self, form):
+        profile = form.save(commit=False)
+        profile.user = self.request.user
+        profile.save()
+        return super(LoadingPageView, self).form_valid(form)
     
     def post(self, request, *args, **kwargs):
         data = json.loads(request.body)
@@ -204,6 +223,11 @@ class LoadingPageView(LoginRequiredMixin,FormView):
             return JsonResponse({'status': 'success', 'message': 'Goal updated'})
         return JsonResponse({'status': 'error', 'message': 'User not authenticated'}, status=401)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_id'] = self.request.user.id
+        return context
+
 
 def create_prompt(profile): #Provide valid JSON output. 
     # prompt = (f"Provide valid JSON output. Generate a detailed 5-week study plan in JSON format, tailored for an individual with specific attributes. "
@@ -211,29 +235,43 @@ def create_prompt(profile): #Provide valid JSON output.
     #         f"Each week should clearly define its learning objectives. "
     #         f"Provide a comprehensive daily learning plan from Monday to Sunday, listing the activities and specific resources needed each day. "
     #         f"The output should be structured as JSON to ensure easy integration and practical application in line with the user's goal, skills, and preferred learning style.")
-    prompt = (f"Create a 5-week study plan in JSON format, specifically tailored to a user's profile with detailed attributes. "
+    prompt = (f"Create a {profile.learning_wks}-week study plan in JSON format, specifically tailored to a user's profile with detailed attributes. "
+              f"User can study for {profile.learning_hrs_per_wk} hours per week, but only give me the general wk plans for now."
               f"The profile details are as follows: Goal - {profile.goal}, Skills - {profile.skill}, Learning Style - {profile.learning_style}. "
-              f"Format the output as a JSON object with a top-level key '5-week_study_plan' containing an array of week objects. "
+              f"Format the output as a JSON object with a top-level key '{profile.learning_wks}-week_study_plan' containing an array of week objects. "
               f"Each week object should include the following keys: "
-              f"'week_number' with a value from 1 to 5, "
+              f"'week_number' with a value from 1 to {profile.learning_wks}, "
               f"'learning_objectives' as an array of strings describing the goals for the week, "
-              f"and keys for each day of the week ('monday' to 'sunday'). "
-              f"Each day key should map to an object with 'activities' as an array of strings detailing planned study activities, "
-              f"and 'resources' as an array of strings listing the necessary materials. "
               f"Ensure that each week is comprehensive and tailored to progressively achieve the user's goal, build on skills, and align with the preferred learning style. "
               f"Here is an example structure for clarity:\n"
               f"{{\n"
-              f"  '5-week_study_plan': [\n"
+              f"  '{profile.learning_wks}-week_study_plan': [\n"
               f"    {{\n"
               f"      'week_number': 1,\n"
               f"      'learning_objectives': ['objective1', 'objective2'],\n"
-              f"      'monday': {{ 'activities': ['activity1', 'activity2'], 'resources': ['resource1', 'resource2'] }},\n"
-              f"      // continue with other days\n"
               f"    }}\n"
               f"    // continue with other weeks\n"
               f"  ]\n"
               f"}}\n"
               f"This detailed prompt should guide you to generate a consistent and structured output suitable for integration into an educational platform.")
+
+            #   f"and keys for each day of the week ('monday' to 'sunday'). "
+            #   f"Each day key should map to an object with 'activities' as an array of strings detailing planned study activities, "
+            #   f"and 'resources' as an array of strings listing the necessary materials. "
+            #   f"Ensure that each week is comprehensive and tailored to progressively achieve the user's goal, build on skills, and align with the preferred learning style. "
+            #   f"Here is an example structure for clarity:\n"
+            #   f"{{\n"
+            #   f"  '5-week_study_plan': [\n"
+            #   f"    {{\n"
+            #   f"      'week_number': 1,\n"
+            #   f"      'learning_objectives': ['objective1', 'objective2'],\n"
+            #   f"      'monday': {{ 'activities': ['activity1', 'activity2'], 'resources': ['resource1', 'resource2'] }},\n"
+            #   f"      // continue with other days\n"
+            #   f"    }}\n"
+            #   f"    // continue with other weeks\n"
+            #   f"  ]\n"
+            #   f"}}\n"
+            #   f"This detailed prompt should guide you to generate a consistent and structured output suitable for integration into an educational platform."
     return prompt
 
 
@@ -275,16 +313,52 @@ class GenerateStudyPlanView(LoginRequiredMixin, View):
         user_id = kwargs.get('user_id')
         if request.user.id != int(user_id):
             return JsonResponse({'error': 'User not authenticated'}, status=401)
+        
         if request.user.id != user_id:
-            # Return a forbidden response if the user does not match
             return HttpResponseForbidden("You are not authorized to view this page.")
-
+        
         if request.user.is_authenticated and request.user.id == user_id:
+            learning_result = check_learning_result(request)
+            print("learning_result from db:", learning_result)
+            if learning_result:
+                return render(request, 'learning-plan/result_learning_style.html', {'json_context': json.dumps(learning_result)})
+        
             profile = get_object_or_404(Profile, user_id=user_id)
             prompt = create_prompt(profile)
             study_plan = get_study_plan(prompt)
-            context = json.loads(study_plan) #parse_study_plan(context)
-            print('test-context',context)
+            print("gpt:", study_plan)
+            context = json.loads(study_plan) # parse_study_plan(context)
+            print('test-context', context)
             json_context = json.dumps(context)
 
-            return render(request, 'learning-plan/result_learning_style.html',{'json_context':json_context})
+            # Ensure general_wk_result is set correctly when the LearningResult object is created
+            learning_result, created = LearningResult.objects.get_or_create(profile=profile, defaults={'general_wk_result': context})
+
+            if not created:
+                learning_result.general_wk_result = context
+                learning_result.save()
+
+            return render(request, 'learning-plan/result_learning_style.html', {'json_context': json_context})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_id'] = int(self.kwargs['user_id'])
+        return context
+
+
+@login_required
+def get_learning_weeks(request):
+    profile = Profile.objects.get(user=request.user)
+    return JsonResponse({'learning_wks': profile.learning_wks})
+
+
+@login_required
+def check_learning_result(request):
+    try:
+        learning_result = LearningResult.objects.get(profile__user=request.user)
+        if learning_result.general_wk_result:
+            return learning_result.general_wk_result
+        else:
+            return None
+    except LearningResult.DoesNotExist:
+        return None

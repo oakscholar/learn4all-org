@@ -22,6 +22,11 @@
     <!--  Google Fonts CSS - Open Sans Hebrew -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+
+    <!-- Timeline-->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Fira+Sans:400,400italic" rel="stylesheet">
 
     <style>
         html,
@@ -131,8 +136,9 @@
             font-weight: bold;
             font-size: 15px;
             position: absolute; 
+            margin-top: auto;
             padding-bottom: 30px;  
-            background: linear-gradient(0.25turn, #ffeda866, rgba(255, 255, 255, 0.4), rgba(187, 255, 255, 0.4)); /* #FFEDA8, #FFFF, #BBFFFF)*/
+            background: linear-gradient(0.25turn, #ffeda866, rgba(255, 255, 255, 0.4), rgba(187, 255, 255, 0.4));
             color: black; 
             border-radius: 5px;  
             padding: 15px;  
@@ -140,13 +146,29 @@
             right: 40px;
         }
 
+        .edit-p {
+            left: 30px;
+            right: 40px;
+            padding-bottom: 30px;  
+            position: absolute; 
+            text-align:right;
+            width: 90%; 
+        }
         #week-selector {
             display: flex;
-            justify-content: center;
-            gap:200px; /* Adjust the space between circles */
+            justify-content:space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            /* gap:200px;  */
         }
 
         .circle {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+        }
+
+        .circle span {
             display: block;
             width: 20px; /* Circle size */
             height: 20px;
@@ -158,13 +180,18 @@
             cursor: pointer;
         }
 
+        .circle date {
+                font-family: 'Open Sans', sans-serif;
+                font-size: 0.9rem;
+                text-align: center;
+                margin-bottom: 5px; 
+            }
         .circle:hover {
             background-color: #0077FF; /* Color change on hover */
         }
 
         #edit-plan {
-            background-color: transparent;
-            color:#0D5ACF;
+            background-image:linear-gradient(to left top, #BBFFFF 0%, #FFFFFF 81%, #FFEDA8 100%) ;
             border: 2px #0077FF solid;
             border-radius: 20px;
             font-weight: bold;
@@ -175,6 +202,7 @@
             cursor: pointer;
             left:auto;
             right:10px;
+            color: #0077FF;
 
         }
 
@@ -220,7 +248,7 @@
         }
 
         .space {
-            margin-bottom: 2em;
+            margin-bottom: 4em;
         }
 
         .pop-up-sidebar-title {
@@ -286,12 +314,163 @@
         .resource-info {
             font-style: italic;
             color: #666;
-}
+        }
+
+        /*-- TimeLine--*/
+        .checkcaption {
+        text-align: center;
+        margin-top: 10px;
+        }
+        .check {
+        width: 60px;
+        height: 30px;
+        border: #222 solid 2px;
+        position: relative;
+        margin: 10px auto;
+        border-radius: 15px;
+        input {
+            visibility: hidden;
+            height: 30px;
+            width: 60px;
+        }
+        label {
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #0D5ACF;
+            cursor: pointer;
+            position: absolute;
+            top: 18%;
+            left: 12%;
+            transition: all .3s ease;
+        }
+        input:checked + label {
+            left: 55%;
+        }
+        }
+
+        div#timeline {
+        margin-top: 150px;
+        height: 10px;
+        width: 100%;
+        position: relative;
+        .inside {
+            position: absolute;
+            height: 4px;
+            background-color: #fff;
+            width: 0%;
+            top: 3px;
+            left: 0;
+        }
+        .dot {
+            z-index: 99;
+            transition : 0.3s ease-in-out;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            position: absolute;
+            top: -15px;
+            text-align: center;
+            cursor: pointer;
+            &:nth-child(1){
+            left: 20%;
+            }
+            &:nth-child(2){
+            left: 40%;
+            }
+            &:nth-child(3){
+            left: 60%;
+            }
+            &:nth-child(4){
+            left: 80%;
+            }
+            &:hover {
+            transform: scale(1.2);
+            }
+            date {
+            font-family: roboto;
+            font-size: 1.1rem;
+            display: block;
+            position: relative;
+            top: -60px;
+            text-align: center;
+            }
+            span {
+            display: inline-block;
+            margin-top: 10px;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            position: relative;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            }
+        }
+        }
+        article {
+        display: none;
+        position: relative;
+        top: 30px;
+        max-width : 960px;
+        background-color: #fff;
+        padding: 20px;
+        margin: auto;
+        date {
+            display: block;
+            text-align: right;
+        }
+        h2 {
+            font-family: merriweather, sans-serif;
+            font-size: 5rem;
+            padding: 10px 0;
+            border-bottom: solid #111 2px;
+            margin-bottom: 20px;
+        }
+        p {
+            line-height: 130%;
+        }
+        }
+        div.mask {
+        display: none;
+        left: 0;
+        top: 0;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.7);
+        z-index: 99999;
+            article {
+            position: relative;
+            top: -100%;
+            margin-top: 50px;
+            max-width : 960px;
+            background-color: #fff;
+            padding: 20px;
+            margin: auto;
+            box-shadow: 0 0 30px rgba(0,0,0,0.4);
+            date {
+            display: block;
+            text-align: right;
+            }
+            h2 {
+            font-family: merriweather, sans-serif;
+            font-size: 5rem;
+            padding: 10px 0;
+            border-bottom: solid #111 2px;
+            margin-bottom: 20px;
+            }
+            p {
+            line-height: 130%;
+            }
+        }
+        }
 
 
     </style>
     <script>
         var data = JSON.parse('{{ json_context|safe }}');
+        console.log("contextData",data);
     </script>
 </head>
     
@@ -336,24 +515,28 @@
                         </p>
                     </div>
                     <div class="describe-your-goal align-items-center">
-                        <div">
+                        <div>
                             <div class="describe-goal-title text-center">
                                 <h3 class="content-title">We have your study plan ready</h3>
-                                <!-- wk1-10 -->
-                                <p class="space"></p>
-                                <div class="justify-content-between">
-                                    <div id="week-selector">
-                                        <a href="#" class="circle" data-week="0"></a>
-                                        <a href="#" class="circle" data-week="1"></a>
-                                        <a href="#" class="circle" data-week="2"></a>
-                                        <a href="#" class="circle" data-week="3"></a>
-                                        <a href="#" class="circle" data-week="4"></a>
-                                    </div>
-                                    <!-- <hr class="line"> -->
+                             
+                                <div class="justify-content-between" >
+                                    <!-- <div class="space"></div> -->
+                                    <div id="week-selector"></div>
                                 </div>
-                                <p class="space"></p>
                             </div>
+                            <div class="edit-p mx-auto">
+                                <button id="edit-plan">Edit the Plan</button>
+                            </div>
+                            <div class="space"></div>
                             <div class="plans mb-3 mx-auto align-items-center">
+                                <!-- <div class="d-flex justify-content-between">
+                                    <p>Learning Objectives</p>
+                                    <button id="edit-plan">Edit the Plan</button>
+                                </div> -->
+                                <div id="week-content" class="week-content"></div>
+                            </div>
+                            
+                            <!-- <div class="plans mb-3 mx-auto align-items-center">
                                 <div class="d-flex justify-content-between">
                                     <p>Running Courses</p>
                                     <button id="edit-plan">Edit the Plan</button>
@@ -367,9 +550,8 @@
                                     <button data-day="saturday">Sa</button>
                                     <button data-day="sunday">Su</button>
                                 </div>
-                                <div id="week-content" class="week-content"></div> <!-- dynamic content for different wks -->
-                                
-                            </div>
+                                <div id="week-content" class="week-content"></div>
+                            </div> -->
                             
                         </div>
                         
@@ -381,8 +563,45 @@
     </body>
 
     <script>
-        var contextData = JSON.parse('{{ json_context|safe }}');
-        console.log("contextData",contextData)
+        var data = JSON.parse('{{ json_context|escapejs }}');
+        document.addEventListener('DOMContentLoaded', function() {
+        const weekSelector = document.getElementById('week-selector');
+        const weekContentDiv = document.getElementById('week-content');
+
+        const weeks = Object.values(data)[0];
+        console.log("weeks",weeks);
+
+        weeks.forEach((week, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'circle';
+            dot.dataset.week = index;
+            dot.innerHTML = `<span></span><date>Week ${week.week_number}</date>`;
+            weekSelector.appendChild(dot);
+
+            dot.addEventListener('click', function() {
+                weekContentDiv.innerHTML = ''; // Clear previous content
+
+                const objectives = week.learning_objectives;
+                objectives.forEach((objective, idx) => {
+                    const activityBlock = document.createElement('div');
+                    activityBlock.className = 'activity-block';
+
+                    const activityTitle = document.createElement('div');
+                    activityTitle.className = 'activity-title';
+                    activityTitle.textContent = `Objective ${idx + 1}: ${objective}`;
+
+                    activityBlock.appendChild(activityTitle);
+                    weekContentDiv.appendChild(activityBlock);
+                });
+            });
+        });
+
+        // Initialize with the first week's objectives
+        if (weeks.length > 0) {
+            weekSelector.firstChild.click();
+        }
+    });
+    
         
         
         function signOut() {
@@ -391,65 +610,65 @@
             window.location.href = '/login';
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const weekContentDiv = document.getElementById('week-content');
-            const weekCircles = document.querySelectorAll('#week-selector .circle');
-            const dayButtons = document.querySelectorAll('#btn-days button');
-            let currentWeek = 0; // Default to first week
-            let currentDay = 'monday'; // Default to Monday
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const weekContentDiv = document.getElementById('week-content');
+        //     const weekCircles = document.querySelectorAll('#week-selector .circle');
+        //     const dayButtons = document.querySelectorAll('#btn-days button');
+        //     let currentWeek = 0; // Default to first week
+        //     let currentDay = 'monday'; // Default to Monday
 
-            function updateContent() {
-                console.log(`Updating content for week ${currentWeek}, day ${currentDay}`);
-                const weekData = contextData['5-week_study_plan'][currentWeek];
-                const dayData = weekData[currentDay.toLowerCase()]; // Ensure day is accessed correctly
-                weekContentDiv.innerHTML = ''; // Clear previous contents
+        //     function updateContent() {
+        //         console.log(`Updating content for week ${currentWeek}, day ${currentDay}`);
+        //         const weekData = contextData['5-week_study_plan'][currentWeek];
+        //         const dayData = weekData[currentDay.toLowerCase()]; // Ensure day is accessed correctly
+        //         weekContentDiv.innerHTML = ''; // Clear previous contents
 
-                dayButtons.forEach(button => {
-                    button.classList.remove('active');
-                });
-                document.querySelector(`#btn-days button[data-day="${currentDay}"]`).classList.add('active');
+        //         dayButtons.forEach(button => {
+        //             button.classList.remove('active');
+        //         });
+        //         document.querySelector(`#btn-days button[data-day="${currentDay}"]`).classList.add('active');
 
-                if (dayData && dayData.activities && dayData.activities.length > 0) {
-                    dayData.activities.forEach((activity, index) => {
-                        const resource = (dayData.resources && dayData.resources[index]) || 'No resource available';
-                        const activityBlock = document.createElement('div');
-                        activityBlock.className = 'activity-block';
+        //         if (dayData && dayData.activities && dayData.activities.length > 0) {
+        //             dayData.activities.forEach((activity, index) => {
+        //                 const resource = (dayData.resources && dayData.resources[index]) || 'No resource available';
+        //                 const activityBlock = document.createElement('div');
+        //                 activityBlock.className = 'activity-block';
 
-                        const activityTitle = document.createElement('div');
-                        activityTitle.className = 'activity-title';
-                        activityTitle.textContent = `Activity: ${activity}`;
+        //                 const activityTitle = document.createElement('div');
+        //                 activityTitle.className = 'activity-title';
+        //                 activityTitle.textContent = `Activity: ${activity}`;
 
-                        const resourceInfo = document.createElement('div');
-                        resourceInfo.className = 'resource-info';
-                        resourceInfo.textContent = `Resource: ${resource}`;
+        //                 const resourceInfo = document.createElement('div');
+        //                 resourceInfo.className = 'resource-info';
+        //                 resourceInfo.textContent = `Resource: ${resource}`;
 
-                        activityBlock.appendChild(activityTitle);
-                        activityBlock.appendChild(resourceInfo);
-                        weekContentDiv.appendChild(activityBlock);
-                    });
-                } else {
-                    weekContentDiv.innerHTML = 'No activities listed for this day.';
-                }
-            }
+        //                 activityBlock.appendChild(activityTitle);
+        //                 activityBlock.appendChild(resourceInfo);
+        //                 weekContentDiv.appendChild(activityBlock);
+        //             });
+        //         } else {
+        //             weekContentDiv.innerHTML = 'No activities listed for this day.';
+        //         }
+        //     }
 
             
-            weekCircles.forEach(circle => {
-                circle.addEventListener('click', function() {
-                    currentWeek = parseInt(this.getAttribute('data-week'));
-                    updateContent(); // Update content when week is changed
-                });
-            });
+        //     weekCircles.forEach(circle => {
+        //         circle.addEventListener('click', function() {
+        //             currentWeek = parseInt(this.getAttribute('data-week'));
+        //             updateContent(); // Update content when week is changed
+        //         });
+        //     });
 
-            dayButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    currentDay = this.getAttribute('data-day');
-                    updateContent(); // Update content when day is changed
-                });
-            });
+        //     dayButtons.forEach(button => {
+        //         button.addEventListener('click', function() {
+        //             currentDay = this.getAttribute('data-day');
+        //             updateContent(); // Update content when day is changed
+        //         });
+        //     });
 
-            // Initialize with first week's Monday data
-            updateContent();
-        });
+        //     // Initialize with first week's Monday data
+        //     updateContent();
+        // });
 
     </script>
 

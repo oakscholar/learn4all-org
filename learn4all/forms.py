@@ -58,6 +58,7 @@ class GoalForm(forms.ModelForm):
         super(GoalForm, self).__init__(*args, **kwargs)
         self.fields['goal'].required = True
 
+
 class LearningStyleForm(forms.ModelForm):
     class Meta:
         model = Profile
@@ -66,6 +67,11 @@ class LearningStyleForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(LearningStyleForm, self).__init__(*args, **kwargs)
         self.fields['learning_style'].required = True
+
+class TimeCommitmentForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['learning_wks', 'learning_hrs_per_wk']
 
 class SkillForm(forms.ModelForm):
     class Meta:
