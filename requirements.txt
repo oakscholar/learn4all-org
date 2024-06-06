@@ -12,3 +12,4 @@ openapi-python-client==0.19.1
 boto3
 openai==0.28
 django-extensions==3.2.3
+django-allauth

@@ -1,0 +1,49 @@
+body {
+  /* background-image: url("../study-plan-background.png"); */
+  background: linear-gradient(to bottom right, #f4f3e0, #FFFFFF, #c4d8f0);
+  background-size: 100vw 100vh;
+}
+
+.plan-title {
+  display: block;
+  text-align: center;
+  margin: 20px;
+  padding: 4rem;
+  color: #0D5ACF;
+  font-family: "Urbanist", sans-serif;
+  }
+
+  .plan-table {
+    /* background: linear-gradient(to bottom right, #f4f3e0, #FFFFFF, #c4d8f0); */
+    background-image: url("../study-plan-table-bg.png");
+    padding: 30px;
+    width: 75%;
+    margin: auto;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+  }
+
+  .sub-title {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+  }
+
+  .card {
+    background-image: repeating-linear-gradient(to right, #FFFFFF, #F0F7FF 5%, #FFFFFF 10%);
+    height: 80px;
+    width: auto;
+  }
+
+  .submit-button {
+    margin-right: 15%;
+    margin-top: 5%;
+    text-align: right;
+    border-color: #0D5ACF;
+    color: #0D5ACF;
+    /*class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 */
+    /*focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700*/
+  }
+
+  .submit-button button {
+    background: linear-gradient(to bottom right, #FFFFFF, #CDF1F6);
+  }

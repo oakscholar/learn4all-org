@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../static/css/study_plan.css" type="text/css"/>
+  <link href="../../static/output.css" rel="stylesheet">
+
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  crossorigin="anonymous"
+  />
+
+  <!--  Google Fonts CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Google Fonts CSS - Urbanist Font -->
+  <link
+  href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+  rel="stylesheet"
+  />
+  <!-- Google Fonts CSS - Public Sans Font -->
+  <link
+  href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Urbanist:ital,wght@0,700;1,700&display=swap"
+  rel="stylesheet"
+  />
+  <!--  Google Fonts CSS - Open Sans Hebrew -->
+  <link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+  rel="stylesheet"
+  />
+  <title>Study Plan</title>
+</head>
+<body>
+  <div>
+    <div class="plan-title">
+      <h3 class="font-black text-4xl">Please revise your study plan</h3>
+    </div>
+
+    <!-- Plan Table -->
+    <div class="plan-table">
+      <div class="sub-title">10-Week Plan</div>
+      <div class="table-headers grid grid-cols-6 py-2">
+        <div class="col-start-2 flex flex-row px-0.25">Week 1 - Week 2</div>
+        <div class="flex flex-row px-0.25">Week 3 - Week 4</div>
+        <div class="flex flex-row px-0.25">Week 5 - Week 6</div>
+        <div class="flex flex-row px-0.25">Week 7 - Week 8</div>
+        <div class="flex flex-row px-0.25">Week 9 - Week 10</div>
+      </div>
+      <div class="table-contents grid grid-rows-4 py-3">
+        <!-- Row 1 -->
+        <div class="content-row-1 flex flex-row items-center py-3">
+          <div class="row-title w-1/6">Books</div>
+          <div class="row-content flex flex-row gap-x-2">
+            <div class="card border-0">
+              <div class="card-body">
+                <h5 class="card-title text-sm">Book 1</h5>
+              </div>
+            </div>
+  
+            <div class="card border-0">
+              <div class="card-body">
+                <h5 class="card-title text-sm">Book 2</h5>
+              </div>
+            </div>
+
+            <!--
+            <div class="card border-0">
+              <div class="progress" style="width:40%; height:100%"></div>
+              <div class="content">
+                <h5 class="card-title">Book 3</h5>
+                <p class="percentage"></p>
+              </div>
+            </div>
+            -->
+
+          </div>
+          
+        </div> <!-- row div ending bracket -->
+
+        <!-- Row 2 -->
+        <div class="content-row-1 flex flex-row items-center">
+          <div class="row-title w-1/6">Video</div>
+          <div class="row-content flex flex-row gap-x-2">
+            <div class="card border-0">
+              <div class="card-body">
+                <h5 class="card-title text-sm">Video 1</h5>
+              </div>
+            </div>
+  
+            <div class="card border-0">
+              <div class="card-body">
+                <h5 class="card-title text-sm">Video 2</h5>
+              </div>
+            </div>
+          </div>
+          
+        </div> <!-- row div ending bracket -->
+
+        <!-- Row 3 -->
+        <div class="content-row-1 flex flex-row items-center">
+          <div class="row-title w-1/6">Short Articles</div>
+          <div class="row-content flex flex-row gap-x-2">
+            <div class="card border-0">
+              <div class="card-body">
+                <h5 class="card-title text-sm">Article 1</h5>
+              </div>
+            </div>
+  
+            <div class="card border-0">
+              <div class="card-body">
+                <h5 class="card-title text-sm">Article 2</h5>
+              </div>
+            </div>
+          </div>
+          
+        </div> <!-- row div ending bracket -->
+        
+
+        <!-- Row 4 -->
+        <div class="content-row-1 flex flex-row items-center">
+          <div class="row-title w-1/6">Quiz</div>
+          <div class="row-content flex flex-row gap-x-2">
+            <div class="card border-l-6 border-0">
+              <div class="card-body">
+                <h5 class="card-title text-sm">Quiz 1</h5>
+              </div>
+            </div>
+  
+            <div class="card border-0">
+              <div class="card-body">
+                <h5 class="card-title text-sm">Quiz 2</h5>
+              </div>
+            </div>
+          </div>
+          
+        </div> <!-- row div ending bracket -->
+
+      </div> <!-- Table-content ending bracket -->
+
+    </div>
+    
+    <div class="submit-button">
+      <button type="button" class="text-cyan-blue border-2 border-cyan-blue bg-gray-500 font-medium rounded-full text-md px-5 py-2.5 me-2 mb-2 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">Done</button>
+    </div>
+
+  </div>
+
+  <script src="../../static/js/study_plan.js" type="text/javascript" charset="utf-8"></script>
+
+</body>
+</html>
+

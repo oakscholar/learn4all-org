@@ -49,6 +49,9 @@ urlpatterns = [
     
     path('loading_page/', views.LoadingPageView.as_view(), name='loadingPage'),
     path('time_commitment/', views.TimeCommitmentView.as_view(), name='timeCommitment'),
+    
+    # Study plan
+    path('study_plan/', views.study_plan, name='studyPlan'),
 
     # Helper functions
     path('get_learning_weeks/', views.get_learning_weeks, name='get_learning_weeks'),

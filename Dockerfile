@@ -15,3 +15,6 @@ COPY . /code
 # Install any needed packages specified in requirements.txt
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
+
+# Run the app server
+# CMD ["python3", "manage.py", "runserver"]

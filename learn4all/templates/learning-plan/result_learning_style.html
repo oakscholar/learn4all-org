@@ -470,7 +470,7 @@
     </style>
     <script>
         var data = JSON.parse('{{ json_context|safe }}');
-        console.log("contextData",data);
+        console.log("contextData", data);
     </script>
 </head>
     
@@ -509,7 +509,7 @@
                 </div>
                 <div class="col col-auto col-md-9 col-xl-10 py-3 min-vh-100 bg-2">
                     <div class="content-header py-3">
-                        <h2 class="urbanist-font">Hi, {{request.user.first_name}}</h2>
+                        <h2 class="urbanist-font">Hi, {{ request.user.first_name }}</h2>
                         <p class="lead">
                             Let's start
                         </p>
@@ -525,7 +525,7 @@
                                 </div>
                             </div>
                             <div class="edit-p mx-auto">
-                                <button id="edit-plan">Edit the Plan</button>
+                                <button id="edit-plan" onclick="editPlan()">Edit the Plan</button>
                             </div>
                             <div class="space"></div>
                             <div class="plans mb-3 mx-auto align-items-center">
@@ -609,6 +609,45 @@
             // Redirect to login or another appropriate page
             window.location.href = '/login';
         }
+
+        // Edit Plan Function
+        function editPlan() {
+            fetch('{% url "resultLearningStyle" %}', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok.');
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+                window.location.href = "{% url studyPlan %}";
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Failed to get study plan, please try again.');
+            });
+        }
+
+        // Function to get a cookie
+        function getCookie(name) {  
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+              const cookies = document.cookie.split(';');
+              for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+                }
+              }
+            }
+            return cookieValue;
+          }
 
         // document.addEventListener('DOMContentLoaded', function() {
         //     const weekContentDiv = document.getElementById('week-content');

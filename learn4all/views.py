@@ -362,3 +362,8 @@ def check_learning_result(request):
             return None
     except LearningResult.DoesNotExist:
         return None
+    
+    
+# Study plan
+def study_plan(request):
+    return render(request, 'learning-plan/study_plan.html')
